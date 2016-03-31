@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/activity_vertical_margin"
+    android:background="@color/colorPrimary"
+    tools:context="com.pollyfat.squarega.MainActivity">
+
+    <ImageView
+        android:layout_margin="@dimen/activity_vertical_margin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/name" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="60dp"
+        android:orientation="vertical">
+
+        <ImageButton
+            android:id="@+id/main_play"
+            android:layout_width="@dimen/main_btn_size"
+            android:layout_height="@dimen/main_btn_size"
+            android:layout_margin="@dimen/main_btn_margin"
+            android:background="@color/transparency"
+            android:scaleType="centerCrop"
+            android:src="@drawable/play" />
+
+        <ImageButton
+            android:id="@+id/main_gold"
+            android:layout_width="@dimen/main_btn_size"
+            android:layout_height="@dimen/main_btn_size"
+            android:layout_margin="@dimen/main_btn_margin"
+            android:background="@color/transparency"
+            android:scaleType="centerCrop"
+            android:src="@drawable/gold" />
+
+        <ImageButton
+            android:id="@+id/main_setting"
+            android:layout_width="@dimen/main_btn_size"
+            android:layout_height="@dimen/main_btn_size"
+            android:layout_margin="@dimen/main_btn_margin"
+            android:background="@color/transparency"
+            android:scaleType="centerCrop"
+            android:src="@drawable/setting" />
+    </LinearLayout>
+
+</RelativeLayout>

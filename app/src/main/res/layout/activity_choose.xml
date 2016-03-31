@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:background="@color/colorPrimary"
+    android:orientation="vertical"
+    android:paddingTop="100dp">
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:orientation="vertical"
+        android:padding="@dimen/activity_vertical_margin">
+
+        <ImageView
+            android:id="@+id/choose_rival"
+            android:layout_width="@dimen/choose_icon_width"
+            android:layout_height="@dimen/choose_icon_height"
+            android:src="@drawable/choose_rival" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/flag_com"
+                android:visibility="invisible"
+                android:layout_width="@dimen/flag_width"
+                android:layout_height="@dimen/flag_height"
+                android:src="@drawable/flag" />
+
+            <ImageView
+                android:id="@+id/fight_com"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/choose_item_height"
+                android:src="@drawable/cpb" />
+
+            <ImageView
+                android:id="@+id/flag_pep"
+                android:visibility="invisible"
+                android:layout_width="@dimen/flag_width"
+                android:layout_height="@dimen/flag_height"
+                android:src="@drawable/flag" />
+
+            <ImageView
+                android:id="@+id/fight_pep"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/choose_item_height"
+                android:src="@drawable/tpb" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/linearLayout2"
+        android:layout_alignLeft="@+id/linearLayout2"
+        android:layout_alignRight="@+id/linearLayout2"
+        android:layout_alignStart="@+id/linearLayout2"
+        android:layout_below="@+id/linearLayout2"
+        android:orientation="vertical"
+        android:padding="@dimen/activity_vertical_margin">
+
+        <ImageView
+            android:layout_width="@dimen/choose_icon_width"
+            android:layout_height="@dimen/choose_icon_height"
+            android:src="@drawable/choose_difficulty" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/flag_two"
+                android:visibility="invisible"
+                android:layout_width="@dimen/flag_width"
+                android:layout_height="@dimen/flag_height"
+                android:src="@drawable/flag" />
+
+            <ImageView
+                android:id="@+id/difficult_two"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/choose_item_height"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:src="@drawable/two" />
+
+            <ImageView
+                android:id="@+id/flag_three"
+                android:visibility="invisible"
+                android:layout_width="@dimen/flag_width"
+                android:layout_height="@dimen/flag_height"
+                android:src="@drawable/flag" />
+
+            <ImageView
+                android:id="@+id/difficult_three"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/choose_item_height"
+                android:src="@drawable/three" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/flag_four"
+                android:visibility="invisible"
+                android:layout_width="@dimen/flag_width"
+                android:layout_height="@dimen/flag_height"
+                android:src="@drawable/flag" />
+
+            <ImageView
+                android:id="@+id/difficult_four"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/choose_item_height"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:src="@drawable/four" />
+
+            <ImageView
+                android:id="@+id/flag_five"
+                android:visibility="invisible"
+                android:layout_width="@dimen/flag_width"
+                android:layout_height="@dimen/flag_height"
+                android:src="@drawable/flag" />
+
+            <ImageView
+                android:id="@+id/difficult_five"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/choose_item_height"
+                android:src="@drawable/five" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/start"
+        android:layout_width="@dimen/start_btn_width"
+        android:layout_height="@dimen/start_btn_height"
+        android:layout_gravity="center"
+        android:background="@drawable/start"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="40dp" />
+</RelativeLayout>

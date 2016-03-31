@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Square</string>
+    <string name="start">开始</string>
+    <string name="mode">模式</string>
+    <string name="single">人机</string>
+    <string name="two_player">对战</string>
+    <string name="size">大小</string>
+    <string name="four">肆</string>
+    <string name="five">伍</string>
+    <string name="six">陆</string>
+    <string name="seven">柒</string>
+    <string name="eight">捌</string>
+    <string name="rival_not_chosen">还没选择对手哦</string>
+    <string name="level_not_chosen">还没选择大小哦</string>
+
+</resources>
