@@ -4,4 +4,5 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="transparency">#00000000</color>
+    <color name="game_bar">#87CDBF</color>
 </resources>

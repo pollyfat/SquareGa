@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.Window;
 
 import com.pollyfat.squarega.activity.ChooseActivity_;
+import com.pollyfat.squarega.activity.Test_;
 
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
@@ -22,7 +23,6 @@ public class MainActivity extends Activity {
 
     @Click(R.id.main_gold)
     void goldWasClicked(){
-
     }
 
     @Click(R.id.main_setting)

@@ -14,6 +14,7 @@ import org.androidannotations.annotations.Extra;
 import org.androidannotations.annotations.ViewById;
 
 /**
+ * 选择对手和关卡
  * Created by bugre on 2016/3/20.
  */
 @EActivity(R.layout.activity_choose)

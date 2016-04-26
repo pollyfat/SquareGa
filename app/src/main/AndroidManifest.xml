@@ -17,6 +17,7 @@
         </activity>
         <activity android:name=".activity.StartActivity_" />
         <activity android:name=".activity.ChooseActivity_" />
+        <activity android:name=".activity.Test_" />
     </application>
 
 </manifest>

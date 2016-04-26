@@ -11,4 +11,5 @@
     <dimen name="choose_item_height">30dp</dimen>
     <dimen name="flag_height">30dp</dimen>
     <dimen name="flag_width">25dp</dimen>
+    <dimen name="game_bar_height">80dp</dimen>
 </resources>
