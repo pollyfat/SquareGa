@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#fff8cb</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimaryDark">#fff8cb</color>
+    <color name="colorAccent">#87cdbf</color>
     <color name="transparency">#00000000</color>
-    <color name="game_bar">#87CDBF</color>
+    <color name="game_bar">#f5f3cf</color>
+    <color name="text_color">#4a629f</color>
+    <color name="start_score">#ffbb44</color>
 </resources>

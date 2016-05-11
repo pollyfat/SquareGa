@@ -2,23 +2,72 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/game_view_root"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <View
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/game_bar_height"
-        android:background="@color/game_bar"/>
+        android:background="@color/game_bar">
+        <TextView
+            android:onClick="onClick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/return_to_main"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:textSize="@dimen/start_text_size"
+            android:textColor="@color/text_color"/>
+        <TextView
+            android:id="@+id/start_rival"
+            android:layout_width="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:text="@string/rival"
+            android:textSize="@dimen/start_text_size"
+            android:textColor="@color/text_color"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:onClick="onClick"
+            android:layout_width="wrap_content"
+            android:text="@string/refresh"
+            android:textSize="@dimen/start_text_size"
+            android:textColor="@color/text_color"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_height="wrap_content"/>
+    </RelativeLayout>
 
     <LinearLayout
-        android:orientation="vertical"
         android:id="@+id/dots"
-        android:layout_centerVertical="true"
         android:layout_width="match_parent"
-        android:layout_height="400dp" />
-    <View
+        android:layout_height="400dp"
+        android:layout_centerVertical="true"
+        android:orientation="vertical"/>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/game_bar_height"
         android:layout_alignParentBottom="true"
-        android:background="@color/game_bar"/>
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:background="@color/game_bar">
+        <TextView
+            android:text="3-0"
+            android:id="@+id/score_start"
+            android:layout_margin="6dp"
+            android:textSize="15sp"
+            android:layout_width="wrap_content"
+            android:textColor="@color/start_score"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:id="@+id/player_name_start"
+            android:textSize="@dimen/start_text_size"
+            android:text="playerName"
+            android:textColor="@color/text_color"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
 </RelativeLayout>

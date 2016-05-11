@@ -12,5 +12,8 @@
     <string name="eight">捌</string>
     <string name="rival_not_chosen">还没选择对手哦</string>
     <string name="level_not_chosen">还没选择大小哦</string>
+    <string name="return_to_main">返回</string>
+    <string name="refresh">重来</string>
+    <string name="rival">电脑</string>
 
 </resources>
