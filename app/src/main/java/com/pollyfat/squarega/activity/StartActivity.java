@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.pollyfat.squarega.R;
+import com.pollyfat.squarega.listener.DotClickListener;
 import com.pollyfat.squarega.view.DotView;
 
 import org.androidannotations.annotations.EActivity;
@@ -22,7 +23,7 @@ import java.util.List;
  * Created by bugre on 2016/3/18.
  */
 @EActivity
-public class StartActivity extends Activity implements View.OnClickListener {
+public class StartActivity extends Activity{
 
     @Extra
     String rival;//对手
@@ -30,7 +31,7 @@ public class StartActivity extends Activity implements View.OnClickListener {
     String level;//难度
 
     LinearLayout root;
-    List dots=new ArrayList();
+    List<DotView> dots=new ArrayList();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +59,7 @@ public class StartActivity extends Activity implements View.OnClickListener {
                 dot.setmX(i);
                 dot.setmY(j);
                 dot.setImageResource(R.drawable.dot_normal);
-                dot.setOnClickListener(this);
+                dot.setOnClickListener(new DotClickListener());
                 dots.add(dot);
                 linearLayout.addView(dot, dotsParams);
             }
@@ -68,13 +69,5 @@ public class StartActivity extends Activity implements View.OnClickListener {
             params.gravity = Gravity.CENTER;
             root.addView(linearLayout, params);
         }
-    }
-
-    /**
-     * 圆点的点击监听
-     */
-    @Override
-    public void onClick(View v) {
-
     }
 }

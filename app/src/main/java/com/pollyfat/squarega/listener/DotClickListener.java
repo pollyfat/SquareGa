@@ -3,6 +3,7 @@ package com.pollyfat.squarega.listener;
 import android.view.View;
 
 import com.pollyfat.squarega.R;
+import com.pollyfat.squarega.util.DrawLine;
 import com.pollyfat.squarega.view.DotView;
 
 import java.util.List;
@@ -12,14 +13,17 @@ import java.util.List;
  */
 public class DotClickListener implements View.OnClickListener {
 
-    List dots;
 
-    public DotClickListener(List dots) {
-        this.dots = dots;
-    }
+    static DotView dotStart;
 
     @Override
     public void onClick(View v) {
-
+        DotView d = (DotView) v;
+        if (d.ismClickable()) {
+            DrawLine.connectDots(d,dotStart);
+        }else {
+            dotStart = d;
+            d.findConnDots();
+        }
     }
 }

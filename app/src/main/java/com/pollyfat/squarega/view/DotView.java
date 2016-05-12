@@ -18,6 +18,9 @@ import java.util.List;
  */
 public class DotView extends ImageView {
 
+    //判断跟上下左右的点是否已连接
+    boolean right=false,left=false,down=false,up=false;
+
     int mX;
     int mY;
     boolean mClickable = false;
@@ -66,44 +69,26 @@ public class DotView extends ImageView {
     /**
      * 找到上下左右的点，并设置为可点击
      */
-    private void findConnDots() {
+    public void findConnDots() {
         int dotCount = dots.size();
         //设置上下左右可点击
         for (int i = 0; i < dotCount; i++) {
             int row, column;
-            DotView d = (DotView) dots.get(i);
+            DotView d =  dots.get(i);
             row = d.getmX();
             column = d.getmY();
             if (row == this.getmX()) {
                 if (column == this.getmY() + 1 || column == this.getmY() - 1) {
-                    d.setClickable(true);
+                    d.setmClickable(true);
                     d.setImageResource(R.drawable.dot);
                 }
             }
             if (column == this.getmY()) {
                 if (row == this.getmX() + 1 || row == this.getmX() - 1) {
-                    d.setClickable(true);
+                    d.setmClickable(true);
                     d.setImageResource(R.drawable.dot);
                 }
             }
         }
     }
-//    @Override
-//    public boolean onTouchEvent(MotionEvent event) {
-//        int action = event.getAction();
-//        switch (action) {
-//            // 触摸按下的事件
-//            case MotionEvent.ACTION_DOWN:
-//
-//                break;
-//            // 触摸移动的事件
-//            case MotionEvent.ACTION_MOVE:
-//                invalidate();
-//                break;
-//            // 触摸抬起的事件
-//            case MotionEvent.ACTION_UP:
-//                break;
-//        }
-//        return true;
-//    }
 }
