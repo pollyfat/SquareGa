@@ -46,4 +46,5 @@ dependencies {
     compile "org.androidannotations:androidannotations-api:$AAVersion"
     compile 'io.reactivex:rxandroid:1.2.0'
     compile 'io.reactivex:rxjava:1.1.4'
+    compile 'org.jetbrains:annotations-java5:15.0'
 }

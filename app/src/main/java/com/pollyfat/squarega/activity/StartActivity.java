@@ -5,12 +5,11 @@ import android.app.Activity;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Gravity;
-import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.pollyfat.squarega.R;
-import com.pollyfat.squarega.listener.DotClickListener;
+import com.pollyfat.squarega.entity.Player;
+import com.pollyfat.squarega.listener.DotModel;
 import com.pollyfat.squarega.view.DotView;
 
 import org.androidannotations.annotations.EActivity;
@@ -30,8 +29,10 @@ public class StartActivity extends Activity{
     @Extra
     String level;//难度
 
+    Player player1,player2;
+
     LinearLayout root;
-    List<DotView> dots=new ArrayList();
+    static List<DotView> dots=new ArrayList();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +60,7 @@ public class StartActivity extends Activity{
                 dot.setmX(i);
                 dot.setmY(j);
                 dot.setImageResource(R.drawable.dot_normal);
-                dot.setOnClickListener(new DotClickListener());
+                dot.setOnClickListener(new DotModel());
                 dots.add(dot);
                 linearLayout.addView(dot, dotsParams);
             }
