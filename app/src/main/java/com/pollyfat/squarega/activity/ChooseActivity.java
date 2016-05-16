@@ -21,7 +21,7 @@ import org.androidannotations.annotations.ViewById;
 public class ChooseActivity extends Activity {
 
     String rival = "";
-    String level = "-1";
+    int level = -1;
 
     @Click({R.id.fight_com, R.id.fight_pep})
     void chooseCom(View clickedView) {
@@ -47,19 +47,19 @@ public class ChooseActivity extends Activity {
         findViewById(R.id.flag_five).setVisibility(View.INVISIBLE);
         switch (clickedView.getId()) {
             case R.id.difficult_two:
-                level = "2";
+                level = 2;
                 findViewById(R.id.flag_two).setVisibility(View.VISIBLE);
                 break;
             case R.id.difficult_three:
-                level = "3";
+                level = 3;
                 findViewById(R.id.flag_three).setVisibility(View.VISIBLE);
                 break;
             case R.id.difficult_four:
-                level = "4";
+                level = 4;
                 findViewById(R.id.flag_four).setVisibility(View.VISIBLE);
                 break;
             case R.id.difficult_five:
-                level = "5";
+                level = 5;
                 findViewById(R.id.flag_five).setVisibility(View.VISIBLE);
                 break;
         }
@@ -70,7 +70,7 @@ public class ChooseActivity extends Activity {
     void startGame() {
         if (rival.equals("")) {
             Toast.makeText(ChooseActivity.this, this.getString(R.string.rival_not_chosen), Toast.LENGTH_SHORT).show();
-        } else if (level.equals("-1")) {
+        } else if (level==-1) {
             Toast.makeText(ChooseActivity.this, this.getString(R.string.level_not_chosen), Toast.LENGTH_SHORT).show();
         } else {
             Intent intent = new Intent(ChooseActivity.this, StartActivity_.class);

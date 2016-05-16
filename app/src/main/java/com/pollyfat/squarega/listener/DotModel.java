@@ -8,8 +8,6 @@ import com.pollyfat.squarega.entity.Square;
 import com.pollyfat.squarega.util.DrawSomething;
 import com.pollyfat.squarega.view.DotView;
 
-import org.jetbrains.annotations.Contract;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,27 +16,35 @@ import java.util.List;
  */
 public class DotModel implements View.OnClickListener {
 
-
+    DrawLineCallback drawLine;
     static DotView dotStart;
     static List<DotView> connDots = new ArrayList<>();
-    static Player player1,player2;
-    Player playerNow;
-
+    Player player1, player2;
+    static Player playerNow;
     static int level;
+
+    public DotModel(DrawLineCallback drawLine) {
+        this.drawLine = drawLine;
+    }
+
     @Override
     public void onClick(View v) {
         DotView d = (DotView) v;
         if (d.ismClickable()) {
             if (playerNow == player1) {
                 playerNow = player2;
-            }else {
+            } else {
                 playerNow = player1;
             }
-            DrawSomething.DrawLine(d,dotStart);
-            setSquareLine(d,dotStart);
-            findCompleteSquare(dotStart,playerNow);
+            int[] locationD = new int[2];
+            int[] locationS = new int[2];
+            d.getLocationInWindow(locationD);
+            dotStart.getLocationInWindow(locationS);
+            drawLine.drawLine(locationD[0], locationS[0], locationD[1], locationS[1]);
+            setSquareLine(d, dotStart);
+            findCompleteSquare(dotStart, playerNow);
             isGameEnd();
-        }else {
+        } else {
             dotStart = d;
             if (!connDots.isEmpty()) {
                 for (DotView dot :
@@ -59,31 +65,39 @@ public class DotModel implements View.OnClickListener {
     /**
      * 记录连接后方块的状态
      */
-    private void setSquareLine(DotView d1,DotView d2){
-        int x = d1.getmX()-d2.getmX();
+    private void setSquareLine(DotView d1, DotView d2) {
+        int x = d1.getmX() - d2.getmX();
         int y = d1.getmY() - d2.getmY();
         if (x == 0) {
             if (y < 0) {
                 //与上面的点连接
-                d2.getOne().setLeft(true);
-                d2.getFour().setRight(true);
-            }else{
+                if (d2.getOne() != null)
+                    d2.getOne().setLeft(true);
+                if (d2.getFour() != null)
+                    d2.getFour().setRight(true);
+            } else {
                 //与下面的点连接
-                d2.getTwo().setLeft(true);
-                d2.getThree().setRight(true);
+                if (d2.getTwo() != null)
+                    d2.getTwo().setLeft(true);
+                if (d2.getThree() != null)
+                    d2.getThree().setRight(true);
             }
-        }else if (x<0){
+        } else if (x < 0) {
             //与左边的点连接
-            d2.getFour().setBottom(true);
-            d2.getThree().setTop(true);
-        }else {
+            if (d2.getFour() != null)
+                d2.getFour().setBottom(true);
+            if (d2.getThree() != null)
+                d2.getThree().setTop(true);
+        } else {
             //与右边的点连接
-            d2.getOne().setBottom(true);
-            d2.getTwo().setTop(true);
+            if (d2.getOne() != null)
+                d2.getOne().setBottom(true);
+            if (d2.getTwo() != null)
+                d2.getTwo().setTop(true);
         }
     }
 
-    private void findCompleteSquare(DotView dot, Player player){
+    private void findCompleteSquare(DotView dot, Player player) {
         List<Square> squares = new ArrayList<>();
         squares.add(dot.getOne());
         squares.add(dot.getTwo());
@@ -91,17 +105,23 @@ public class DotModel implements View.OnClickListener {
         squares.add(dot.getFour());
         for (Square s :
                 squares) {
-            if (s.isTop() && s.isBottom() && s.isLeft() && s.isRight()) {
-                DrawSomething.DrawFlag();
-                s.setOwner(player);
+            if (s != null) {
+                if (s.isTop() && s.isBottom() && s.isLeft() && s.isRight()) {
+                    DrawSomething.DrawFlag();
+                    s.setOwner(player);
+                }
             }
         }
     }
 
-    private void isGameEnd(){
-        if (player1.getWinSquare() > level * level / 2) {
-        }
-        if (player2.getWinSquare() > level * level / 2) {
-        }
+    private void isGameEnd() {
+//        if (player1.getWinSquare() > level * level / 2) {
+//        }
+//        if (player2.getWinSquare() > level * level / 2) {
+//        }
+    }
+
+    public interface DrawLineCallback {
+        void drawLine(float startX, float startY, float stopX, float stopY);
     }
 }
