@@ -1,7 +1,15 @@
 [
     {
+        "merged": "D:\\asworkspace\\SquareGa\\satellitemenu\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\sat_main.xml",
+        "source": "D:\\asworkspace\\SquareGa\\satellitemenu\\build\\intermediates\\bundles\\debug\\res\\layout\\sat_main.xml"
+    },
+    {
         "merged": "E:\\work\\android\\workspace\\SquareGa\\satellitemenu\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\sat_item_cr.xml",
         "source": "E:\\work\\android\\workspace\\SquareGa\\satellitemenu\\build\\intermediates\\bundles\\debug\\res\\layout\\sat_item_cr.xml"
+    },
+    {
+        "merged": "D:\\asworkspace\\SquareGa\\satellitemenu\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\sat_item_cr.xml",
+        "source": "D:\\asworkspace\\SquareGa\\satellitemenu\\build\\intermediates\\bundles\\debug\\res\\layout\\sat_item_cr.xml"
     },
     {
         "merged": "E:\\work\\android\\workspace\\SquareGa\\satellitemenu\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\sat_main.xml",

@@ -1,12 +1,15 @@
 package com.pollyfat.squarega.listener;
 
+import android.graphics.Rect;
 import android.view.View;
 
 import com.pollyfat.squarega.R;
+import com.pollyfat.squarega.activity.StartActivity;
 import com.pollyfat.squarega.entity.Player;
 import com.pollyfat.squarega.entity.Square;
 import com.pollyfat.squarega.util.DrawSomething;
 import com.pollyfat.squarega.view.DotView;
+import com.pollyfat.squarega.view.DotsCanvas;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,35 +19,38 @@ import java.util.List;
  */
 public class DotModel implements View.OnClickListener {
 
-    DrawLineCallback drawLine;
     static DotView dotStart;
     static List<DotView> connDots = new ArrayList<>();
     Player player1, player2;
     static Player playerNow;
     static int level;
-
-    public DotModel(DrawLineCallback drawLine) {
-        this.drawLine = drawLine;
-    }
+    DotsCanvas dotsCanvas;
 
     @Override
     public void onClick(View v) {
         DotView d = (DotView) v;
         if (d.ismClickable()) {
+            //如果为可点击状态，说明此点周围的点已被点击过，等待连接。
             if (playerNow == player1) {
                 playerNow = player2;
             } else {
                 playerNow = player1;
             }
-            int[] locationD = new int[2];
-            int[] locationS = new int[2];
-            d.getLocationInWindow(locationD);
-            dotStart.getLocationInWindow(locationS);
-            drawLine.drawLine(locationD[0], locationS[0], locationD[1], locationS[1]);
+            float startX,startY,stopX,stopY;
+            Rect rect = new Rect();
+            d.getGlobalVisibleRect(rect);
+            startX = rect.exactCenterX();
+            startY = rect.exactCenterY()- StartActivity.SURPLUS;
+            dotStart.getGlobalVisibleRect(rect);
+            stopX = rect.exactCenterX();
+            stopY = rect.exactCenterY()-StartActivity.SURPLUS;
+            dotsCanvas.setCoord(startX,startY,stopX,stopY);
+            dotsCanvas.invalidate();
             setSquareLine(d, dotStart);
             findCompleteSquare(dotStart, playerNow);
-            isGameEnd();
+//            isGameEnd();
         } else {
+            //不可连接状态，则将周围的点设置为可连接状态
             dotStart = d;
             if (!connDots.isEmpty()) {
                 for (DotView dot :
@@ -97,6 +103,11 @@ public class DotModel implements View.OnClickListener {
         }
     }
 
+    /**
+     * 遍历发生了点击链接的点周围的方块，查看是否有方块被围成
+     * @param dot 发生点击连接的点
+     * @param player 操作的玩家
+     */
     private void findCompleteSquare(DotView dot, Player player) {
         List<Square> squares = new ArrayList<>();
         squares.add(dot.getOne());
@@ -114,14 +125,21 @@ public class DotModel implements View.OnClickListener {
         }
     }
 
-    private void isGameEnd() {
+    /**
+     * 构造函数
+     * @param player1
+     * @param player2
+     * @param dotsCanvas dotView的父容器，执行画线操作
+     */
+    public DotModel(Player player1, Player player2, DotsCanvas dotsCanvas) {
+        this.player1 = player1;
+        this.player2 = player2;
+        this.dotsCanvas = dotsCanvas;
+    }
+
 //        if (player1.getWinSquare() > level * level / 2) {
 //        }
 //        if (player2.getWinSquare() > level * level / 2) {
 //        }
-    }
 
-    public interface DrawLineCallback {
-        void drawLine(float startX, float startY, float stopX, float stopY);
-    }
 }

@@ -4,17 +4,21 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.drawable.LayerDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import com.pollyfat.squarega.R;
 import com.pollyfat.squarega.entity.Player;
 import com.pollyfat.squarega.entity.Square;
 import com.pollyfat.squarega.listener.DotModel;
 import com.pollyfat.squarega.view.DotView;
+import com.pollyfat.squarega.view.DotsCanvas;
 
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.Extra;
@@ -25,36 +29,71 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by bugre on 2016/3/18.
+ * Created by polly on 2016/3/18.
+ *
+ * 游戏界面
+ *
  */
 @EActivity
-public class StartActivity extends Activity implements DotModel.DrawLineCallback{
+public class StartActivity extends Activity {
+
+    public static int SURPLUS;//坐标偏差值
 
     @Extra
-    String rival;//对手
+    String rival;//对手（电脑/人）
     @Extra
     int level;//难度
 
-    Player player1,player2;
-    Canvas mCanvas;
-    LinearLayout root;
-    static List<DotView> dots=new ArrayList<>();
+    Player player1, player2;
+    DotsCanvas root;
+    static List<DotView> dots = new ArrayList<>();
     static List<Square> squares = new ArrayList<>();
+    DotModel dotModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
-        root = (LinearLayout) findViewById(R.id.dots);
-        mCanvas = new Canvas();
+        root = (DotsCanvas) findViewById(R.id.dots);
+        dotModel = new DotModel(player1, player2, root);
         initGameView();
         initSquares();
         connDotAndSquare();
+        setSurplus();
     }
 
+    /**
+    * onDraw时获取的坐标包含状态栏和顶部Layout，获取这部分偏差值以矫正坐标
+    */
+    private void setSurplus() {
+        final RelativeLayout surplus = (RelativeLayout) findViewById(R.id.start_surplus);
+        ViewTreeObserver vto = surplus.getViewTreeObserver();
+        vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
+                if (resourceId > 0) {
+                    int result = getResources().getDimensionPixelSize(resourceId);
+                    SURPLUS = surplus.getHeight()+result;
+                }
+                ViewTreeObserver obs = surplus.getViewTreeObserver();
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                    obs.removeOnGlobalLayoutListener(this);
+                } else {
+                    obs.removeGlobalOnLayoutListener(this);
+                }
+            }
+
+        });
+
+    }
+
+    /**
+     * 初始化方块
+     */
     private void initSquares() {
-        for (int i=0;i<level-1;i++) {
-            for (int j=0;j<level-1;j++) {
+        for (int i = 0; i < level - 1; i++) {
+            for (int j = 0; j < level - 1; j++) {
                 Square square = new Square();
                 square.setmX(i);
                 square.setmY(j);
@@ -80,7 +119,7 @@ public class StartActivity extends Activity implements DotModel.DrawLineCallback
                 dot.setmX(i);
                 dot.setmY(j);
                 dot.setImageResource(R.drawable.dot_normal);
-                dot.setOnClickListener(new DotModel(this));
+                dot.setOnClickListener(dotModel);
                 dots.add(dot);
                 linearLayout.addView(dot, dotsParams);
             }
@@ -92,13 +131,6 @@ public class StartActivity extends Activity implements DotModel.DrawLineCallback
         }
     }
 
-    @Override
-    public void drawLine(float startX, float startY, float stopX, float stopY) {
-        Paint paint = new Paint();
-        paint.setAntiAlias(true);
-        paint.setColor(getResources().getColor(R.color.colorAccent));
-        mCanvas.drawLine(startX,startY,stopX,stopY,paint);
-    }
 
     void onClick(View view) {
         switch (view.getId()) {
@@ -106,12 +138,18 @@ public class StartActivity extends Activity implements DotModel.DrawLineCallback
                 //重来
                 break;
             case R.id.start_back:
-                //back to choose level
+                finish();
                 break;
         }
     }
 
-    Map<Integer,Square> findSquare(int x, int y) {
+    /**
+     * 找出每个点对应的方块
+     * @param x 点的x
+     * @param y 点的y
+     * @return 点的方块
+     */
+    Map<Integer, Square> findSquare(int x, int y) {
         Map<Integer, Square> squareMap = new HashMap<>();
         for (Square s :
                 squares) {
@@ -122,9 +160,9 @@ public class StartActivity extends Activity implements DotModel.DrawLineCallback
                     squareMap.put(3, s);
                 }
             } else if (s.getmX() == x - 1) {
-                if (s.getmY() == y ) {
+                if (s.getmY() == y) {
                     squareMap.put(1, s);
-                } else if (s.getmY()== y - 1) {
+                } else if (s.getmY() == y - 1) {
                     squareMap.put(4, s);
                 }
             }
@@ -132,10 +170,13 @@ public class StartActivity extends Activity implements DotModel.DrawLineCallback
         return squareMap;
     }
 
-    void connDotAndSquare(){
+    /**
+     * 将点和对应象限的方块连接
+     */
+    void connDotAndSquare() {
         for (DotView d :
                 dots) {
-            Map<Integer,Square> dSquare = findSquare(d.getmX(), d.getmY());
+            Map<Integer, Square> dSquare = findSquare(d.getmX(), d.getmY());
             d.setOne(dSquare.get(1));
             d.setTwo(dSquare.get(2));
             d.setThree(dSquare.get(3));

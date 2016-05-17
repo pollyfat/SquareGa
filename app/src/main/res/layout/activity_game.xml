@@ -7,6 +7,7 @@
     android:orientation="vertical">
 
     <RelativeLayout
+        android:id="@+id/start_surplus"
         android:layout_width="match_parent"
         android:layout_height="@dimen/game_bar_height"
         android:background="@color/game_bar">
@@ -42,7 +43,7 @@
             android:layout_height="wrap_content"/>
     </RelativeLayout>
 
-    <LinearLayout
+    <com.pollyfat.squarega.view.DotsCanvas
         android:id="@+id/dots"
         android:layout_width="match_parent"
         android:layout_height="400dp"
