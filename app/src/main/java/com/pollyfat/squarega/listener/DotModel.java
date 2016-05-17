@@ -10,6 +10,7 @@ import com.pollyfat.squarega.entity.Square;
 import com.pollyfat.squarega.util.DrawSomething;
 import com.pollyfat.squarega.view.DotView;
 import com.pollyfat.squarega.view.DotsCanvas;
+import com.pollyfat.squarega.view.Point;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,7 +45,7 @@ public class DotModel implements View.OnClickListener {
             dotStart.getGlobalVisibleRect(rect);
             stopX = rect.exactCenterX();
             stopY = rect.exactCenterY()-StartActivity.SURPLUS;
-            dotsCanvas.setCoord(startX,startY,stopX,stopY);
+            dotsCanvas.addPoint(new Point(startX,startY,stopX,stopY));
             dotsCanvas.invalidate();
             setSquareLine(d, dotStart);
             findCompleteSquare(dotStart, playerNow);
