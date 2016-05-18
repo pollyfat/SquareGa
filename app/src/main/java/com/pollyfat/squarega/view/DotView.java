@@ -12,15 +12,74 @@ import com.pollyfat.squarega.R;
 import com.pollyfat.squarega.entity.Square;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
- * Created by bugre on 2016/4/5.
+ * Created by polly on 2016/4/5.
+ *
+ * 圆点
  */
 public class DotView extends ImageView {
 
     //判断跟上下左右的点是否已连接
     boolean right=false,left=false,down=false,up=false;
+    Square one,two,three,four;
+    int mX;
+    int mY;
+    boolean mClickable = false;
+    boolean mSelected = false;
+    float coordX,coordY;
+    static List<DotView> dots = new ArrayList<>();
+
+    public boolean isRight() {
+        return right;
+    }
+
+    public void setRight(boolean right) {
+        this.right = right;
+    }
+
+    public boolean isLeft() {
+        return left;
+    }
+
+    public void setLeft(boolean left) {
+        this.left = left;
+    }
+
+    public boolean isDown() {
+        return down;
+    }
+
+    public void setDown(boolean down) {
+        this.down = down;
+    }
+
+    public boolean isUp() {
+        return up;
+    }
+
+    public void setUp(boolean up) {
+        this.up = up;
+    }
+
+    public float getCoordX() {
+        return coordX;
+    }
+
+    public void setCoordX(float coordX) {
+        this.coordX = coordX;
+    }
+
+    public float getCoordY() {
+        return coordY;
+    }
+
+    public void setCoordY(float coordY) {
+        this.coordY = coordY;
+    }
 
     public Square getOne() {
         return one;
@@ -53,14 +112,6 @@ public class DotView extends ImageView {
     public void setFour(Square four) {
         this.four = four;
     }
-
-    Square one,two,three,four;
-
-    int mX;
-    int mY;
-    boolean mClickable = false;
-    boolean mSelected = false;
-    static List<DotView> dots = new ArrayList<>();
 
     public DotView(Context context) {
         super(context);
@@ -125,5 +176,14 @@ public class DotView extends ImageView {
             }
         }
         return connDots;
+    }
+
+    public Map<Integer,Square> getSquares(){
+        Map<Integer,Square> squares = new HashMap<>();
+        squares.put(1,getOne());
+        squares.put(2,getTwo());
+        squares.put(3,getThree());
+        squares.put(4,getFour());
+        return squares;
     }
 }

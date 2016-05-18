@@ -13,6 +13,34 @@ public class Square {
 
     private Player owner;
     private int mX,mY;
+    private boolean top, left, bottom, right;
+    private float coordX;
+    private float coordY;
+    private boolean coordSet;
+
+    public boolean isCoordSet() {
+        return coordSet;
+    }
+
+    public void setCoordSet(boolean coordSet) {
+        this.coordSet = coordSet;
+    }
+
+    public float getCoordY() {
+        return coordY;
+    }
+
+    public void setCoordY(float coordY) {
+        this.coordY = coordY;
+    }
+
+    public float getCoordX() {
+        return coordX;
+    }
+
+    public void setCoordX(float coordX) {
+        this.coordX = coordX;
+    }
 
     public int getmX() {
         return mX;
@@ -25,55 +53,9 @@ public class Square {
     public int getmY() {
         return mY;
     }
-
     public void setmY(int mY) {
         this.mY = mY;
     }
-        private boolean top, left, bottom, right;
-//    private DotView topLeft, topRight, botLeft, botRight;
-//    private static List<DotView> dots = new ArrayList<>();
-//
-//    public List<DotView> getDots() {
-//        return dots;
-//    }
-//
-//    public void setDots(List<DotView> dots) {
-//        this.dots = dots;
-//    }
-//
-//
-//    public DotView getTopLeft() {
-//        return topLeft;
-//    }
-//
-//    public void setTopLeft(DotView topLeft) {
-//        this.topLeft = topLeft;
-//    }
-//
-//    public DotView getTopRight() {
-//        return topRight;
-//    }
-//
-//    public void setTopRight(DotView topRight) {
-//        this.topRight = topRight;
-//    }
-//
-//    public DotView getBotLeft() {
-//        return botLeft;
-//    }
-//
-//    public void setBotLeft(DotView botLeft) {
-//        this.botLeft = botLeft;
-//    }
-//
-//    public DotView getBotRight() {
-//        return botRight;
-//    }
-//
-//    public void setBotRight(DotView botRight) {
-//        this.botRight = botRight;
-//    }
-//
     public boolean isTop() {
         return top;
     }

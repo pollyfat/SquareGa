@@ -16,8 +16,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.StartActivity_" />
-        <activity android:name=".activity.ChooseActivity_" />
-        <activity android:name=".activity.Test_" />
+        <activity android:name=".activity.ChooseRivalActivity_" />
     </application>
 
 </manifest>
