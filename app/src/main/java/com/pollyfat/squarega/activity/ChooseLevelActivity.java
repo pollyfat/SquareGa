@@ -14,8 +14,8 @@ import org.androidannotations.annotations.EActivity;
  * 选择对手和关卡
  * Created by bugre on 2016/3/20.
  */
-@EActivity(R.layout.activity_choose)
-public class ChooseRivalActivity extends Activity {
+@EActivity(R.layout.activity_choose_level)
+public class ChooseLevelActivity extends Activity {
 
     String rival = "";
     int level = -1;
@@ -66,11 +66,11 @@ public class ChooseRivalActivity extends Activity {
     @Click(R.id.start)
     void startGame() {
         if (rival.equals("")) {
-            Toast.makeText(ChooseRivalActivity.this, this.getString(R.string.rival_not_chosen), Toast.LENGTH_SHORT).show();
+            Toast.makeText(ChooseLevelActivity.this, this.getString(R.string.rival_not_chosen), Toast.LENGTH_SHORT).show();
         } else if (level==-1) {
-            Toast.makeText(ChooseRivalActivity.this, this.getString(R.string.level_not_chosen), Toast.LENGTH_SHORT).show();
+            Toast.makeText(ChooseLevelActivity.this, this.getString(R.string.level_not_chosen), Toast.LENGTH_SHORT).show();
         } else {
-            Intent intent = new Intent(ChooseRivalActivity.this, StartActivity_.class);
+            Intent intent = new Intent(ChooseLevelActivity.this, StartActivity_.class);
             intent.putExtra("rival", rival);
             intent.putExtra("level", level);
             startActivity(intent);

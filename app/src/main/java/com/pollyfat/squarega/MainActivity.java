@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.view.Window;
 
-import com.pollyfat.squarega.activity.ChooseRivalActivity_;
+import com.pollyfat.squarega.activity.ChooseLevelActivity_;
 
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
@@ -16,7 +16,7 @@ public class MainActivity extends Activity {
 
     @Click(R.id.main_play)
     void playWasClicked() {
-        Intent intent = new Intent(MainActivity.this, ChooseRivalActivity_.class);
+        Intent intent = new Intent(MainActivity.this, ChooseLevelActivity_.class);
         startActivity(intent);
     }
 

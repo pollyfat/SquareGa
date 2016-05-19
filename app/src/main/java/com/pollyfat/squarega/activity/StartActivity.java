@@ -40,8 +40,11 @@ public class StartActivity extends Activity {
     String rival;//对手（电脑/人）
     @Extra
     int level;//难度
+    @Extra
+    public Player player1;
+    @Extra
+    public Player player2;
 
-    public static Player player1, player2;
     DotsCanvas root;
     DotView[][] dotViews;
     Square[][] squares;
@@ -72,7 +75,6 @@ public class StartActivity extends Activity {
                 if (resourceId > 0) {
                     int result = getResources().getDimensionPixelSize(resourceId);
                     SURPLUS = surplus.getHeight() + result;
-
                 }
                 ViewTreeObserver obs = surplus.getViewTreeObserver();
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
@@ -114,22 +116,21 @@ public class StartActivity extends Activity {
                         dot.setCoordY(rect.exactCenterY() - StartActivity.SURPLUS - dot.getHeight() / 2);
                         if (dot.getmX() == level - 1 && dot.getmY() == level - 1) {
                             //界面绘制完毕后初始化方块，并向坐标赋值
-                            //这样写太丑啦太丑啦太丑啦！！！！
                             for (int i = 0; i < level - 1; i++) {
                                 for (int j = 0; j < level - 1; j++) {
                                     Square square = new Square();
                                     square.setmX(j);
                                     square.setmY(i);
-                                    square.setCoordX((dotViews[i + 1][j].getCoordX() - dotViews[i][j].getCoordX()) / 2 + dotViews[i][j].getCoordX());
-                                    square.setCoordY((dotViews[i][j + 1].getCoordY() - dotViews[i][j].getCoordY()) / 2 + dotViews[i][j].getCoordY());
-                                    squares[i][j] = square;
+                                    square.setCoordX((dotViews[i][j + 1].getCoordX() - dotViews[i][j].getCoordX()) / 2 + dotViews[i][j].getCoordX());
+                                    square.setCoordY((dotViews[i + 1][j].getCoordY() - dotViews[i][j].getCoordY()) / 2 + dotViews[i][j].getCoordY());
+                                    squares[j][i] = square;
                                 }
                             }
                             connDotAndSquare();
                         }
                     }
                 });
-                dotViews[i][j] = dot;
+                dotViews[j][i] = dot;
                 linearLayout.addView(dot, dotsParams);
             }
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
@@ -149,17 +150,17 @@ public class StartActivity extends Activity {
             for (DotView d :
                     dots) {
                 try {
+                    d.setOne(squares[d.getmX()][d.getmY() - 1]);
+                } catch (IndexOutOfBoundsException e) {
+
+                }
+                try {
                     d.setTwo(squares[d.getmX()][d.getmY()]);
                 } catch (IndexOutOfBoundsException e) {
 
                 }
                 try {
-                    d.setOne(squares[d.getmX() - 1][d.getmY()]);
-                } catch (IndexOutOfBoundsException e) {
-
-                }
-                try {
-                    d.setThree(squares[d.getmX()][d.getmY() - 1]);
+                    d.setThree(squares[d.getmX() - 1][d.getmY()]);
                 } catch (IndexOutOfBoundsException e) {
 
                 }

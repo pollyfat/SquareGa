@@ -67,7 +67,6 @@ public class DotModel implements View.OnClickListener {
         connDots = d.findConnDots();
         Animation anim1 = AnimationUtils.loadAnimation(context, R.anim.dot_selected_anim_swell);
         anim1.setDuration(1000);
-        anim1.setInterpolator(context, android.support.v7.appcompat.R.anim.abc_popup_enter);
         for (final DotView dot :
                 connDots) {
             dot.setmClickable(true);
@@ -92,8 +91,8 @@ public class DotModel implements View.OnClickListener {
      * 记录连接后方块的状态
      */
     private void setSquareLine(DotView d1, DotView d2) {
-        int x = d2.getmX() - d1.getmX();
-        int y = d2.getmY() - d1.getmY();
+        int x = d1.getmX() - d2.getmX();
+        int y = d1.getmY() - d2.getmY();
         if (x == 0) {
             if (y < 0) {
                 //与上面的点连接

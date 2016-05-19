@@ -16,7 +16,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.StartActivity_" />
-        <activity android:name=".activity.ChooseRivalActivity_" />
+        <activity android:name=".activity.ChooseLevelActivity_" />
+        <activity android:name=".activity.RankingListActivity" />
+        <activity android:name=".activity.GameWinActivity" />
+        <activity android:name=".activity.SettingActivity" />
+        <activity android:name=".activity.ChoosePlayersActivity"></activity>
     </application>
 
 </manifest>

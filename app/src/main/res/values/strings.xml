@@ -15,5 +15,8 @@
     <string name="return_to_main">返回</string>
     <string name="refresh">重来</string>
     <string name="rival">电脑</string>
-
+    <string name="title_activity_choose_or_create_player">ChooseOrCreatePlayer</string>
+    <string name="choose_player_one">玩家一</string>
+    <string name="choose_player_two">玩家二</string>
+    <string name="edit_name">请输入名字</string>
 </resources>

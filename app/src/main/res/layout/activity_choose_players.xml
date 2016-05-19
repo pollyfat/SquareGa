@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/choose_player_bg"
+    android:orientation="vertical"
+    android:padding="@dimen/activity_horizontal_margin"
+    tools:context="com.pollyfat.squarega.activity.ChoosePlayersActivity">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="-64dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/ribbon_square" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_player_one"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/player_one_bg"
+            android:paddingLeft="@dimen/choose_player_btn_padding"
+            android:paddingRight="@dimen/choose_player_btn_padding"
+            android:layout_marginRight="-5dp"
+            android:elevation="1dp"
+            android:text="@string/choose_player_one" />
+
+        <Button
+            android:id="@+id/btn_player_two"
+            android:elevation="0dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/player_two_bg"
+            android:paddingLeft="@dimen/choose_player_btn_padding"
+            android:paddingRight="@dimen/choose_player_btn_padding"
+            android:text="@string/choose_player_two" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/choose_player_list"
+        android:background="@color/player_two"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <GridView
+            android:id="@+id/player_table"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/dot_line"
+            android:elevation="1dp"
+            android:gravity="center"
+            android:numColumns="auto_fit"
+            android:stretchMode="none" />
+
+        <ImageView
+            android:id="@+id/add_player"
+            android:padding="5dp"
+            android:layout_width="@dimen/add_player_btn_size"
+            android:layout_height="@dimen/add_player_btn_size"
+            android:layout_centerHorizontal="true"
+            android:layout_centerInParent="true"
+            android:layout_alignBottom="@id/player_table"
+            android:background="@drawable/circle_bg"
+            android:layout_marginBottom="@dimen/activity_horizontal_margin"
+            android:elevation="2dp"
+            android:src="@drawable/add" />
+        <Button
+            android:text="下一步"
+            android:layout_below="@id/player_table"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+</LinearLayout>

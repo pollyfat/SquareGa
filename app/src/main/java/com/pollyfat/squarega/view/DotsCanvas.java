@@ -60,11 +60,11 @@ public class DotsCanvas extends LinearLayout {
         Bitmap bitmap;
         for (Point p :
                 points) {
-            if (p.player.equals(StartActivity.player1)) {
+//            if (p.player.equals(StartActivity.player1)) {
                 bitmap = BitmapFactory.decodeResource(res, R.drawable.flag);
-            } else{
-                bitmap = BitmapFactory.decodeResource(res, R.drawable.two);
-            }
+//            } else{
+//                bitmap = BitmapFactory.decodeResource(res, R.drawable.two);
+//            }
             canvas.drawBitmap(bitmap,p.coordX + bitmap.getWidth() / 2, p.coordY + bitmap.getHeight() / 2,new Paint());
         }
     }

@@ -7,4 +7,8 @@
     <color name="game_bar">#f5f3cf</color>
     <color name="text_color">#4a629f</color>
     <color name="start_score">#ffbb44</color>
+    <color name="player_one">#b2d6b4</color>
+    <color name="player_two">#e8dccf</color>
+    <color name="choose_player_bg">#f4efe9</color>
+    <color name="white">#ffffff</color>
 </resources>
