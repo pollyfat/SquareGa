@@ -8,6 +8,11 @@ public class Player {
     private String name;
     private int winCount;//获胜局数
     private int winSquare;//获得的方块数
+    private String avatar;
+
+    public Player(String avatar) {
+        this.avatar = avatar;
+    }
 
     public String getName() {
         return name;
@@ -15,6 +20,14 @@ public class Player {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 
     public int getWinCount() {

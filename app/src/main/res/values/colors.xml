@@ -11,4 +11,6 @@
     <color name="player_two">#e8dccf</color>
     <color name="choose_player_bg">#f4efe9</color>
     <color name="white">#ffffff</color>
+    <color name="edit_text_bg">#EDEDED</color>
+    <color name="edit_text_hint">#CDE2DB</color>
 </resources>

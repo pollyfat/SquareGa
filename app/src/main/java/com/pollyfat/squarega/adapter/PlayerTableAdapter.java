@@ -6,10 +6,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.pollyfat.squarega.R;
 import com.pollyfat.squarega.entity.Player;
+import com.pollyfat.squarega.util.Util;
 
 import java.util.List;
 
@@ -17,13 +19,15 @@ import java.util.List;
  * Created by android on 2016/5/19.
  */
 public class PlayerTableAdapter extends BaseAdapter {
-
+    public static final int SELECT_LIST = 0, CREATE_LIST = 1;
     Context context;
-    List<Player> players ;
+    List<Player> players;
+    int tag;
 
-    public PlayerTableAdapter(Context context, List<Player> players) {
+    public PlayerTableAdapter(Context context, List<Player> players, int tag) {
         this.context = context;
         this.players = players;
+        this.tag = tag;
     }
 
     @Override
@@ -42,22 +46,48 @@ public class PlayerTableAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        ViewHolder viewHolder ;
+    public View getView(final int position, View convertView, ViewGroup parent) {
+        final ViewHolder viewHolder;
+
         if (convertView == null) {
-            convertView = LayoutInflater.from(context).inflate(R.layout.activity_choose_players, null);
+            convertView = LayoutInflater.from(context).inflate(R.layout.player_item, null);
             viewHolder = new ViewHolder();
             viewHolder.avatar = (ImageView) convertView.findViewById(R.id.player_avatar);
             viewHolder.name = (TextView) convertView.findViewById(R.id.player_name);
+            viewHolder.nameSpace = (RelativeLayout) convertView.findViewById(R.id.name_space);
+            viewHolder.metal = (ImageView) convertView.findViewById(R.id.avatar_medal);
             convertView.setTag(viewHolder);
-        }else {
+        } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
+        if (tag == SELECT_LIST) {
+            //选择已存在的玩家
+            viewHolder.name.setText(players.get(position).getName());
+            viewHolder.avatar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
+        } else {
+            //创建玩家
+            viewHolder.nameSpace.setVisibility(View.GONE);
+            viewHolder.avatar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    viewHolder.metal.setVisibility(View.VISIBLE);
+                }
+            });
+        }
+        viewHolder.avatar.setImageResource(Util.getDrawableResourceByName(players.get(position).getAvatar(), context));
+
         return convertView;
     }
 
-    class ViewHolder{
+    class ViewHolder {
         ImageView avatar;
         TextView name;
+        RelativeLayout nameSpace;
+        ImageView metal;
     }
 }
