@@ -3,6 +3,8 @@ package com.pollyfat.squarega.activity;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
@@ -10,9 +12,11 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
@@ -20,6 +24,7 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.pollyfat.squarega.R;
 import com.pollyfat.squarega.adapter.PlayerTableAdapter;
 import com.pollyfat.squarega.entity.Player;
@@ -30,7 +35,9 @@ import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @EActivity(R.layout.activity_choose_players)
@@ -57,20 +64,22 @@ public class ChoosePlayersActivity extends Activity{
     View popupView;
     EditText name;
     GridView createGrid;
+    ImageButton doneBtn;
     PlayerTableAdapter createAdapter;
 
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
-    int selectPosition,createPosition;
+    int selectPosition = -1, createPosition = -1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         sharedPreferences = getSharedPreferences(spFileName, Context.MODE_PRIVATE);
-        initPlayersList();
     }
 
     @AfterViews
     public void initViews() {
+        initPlayersList();
         btnRoot.removeAllViews();
         btnRoot.addView(pTwo);
         btnRoot.addView(pOne);
@@ -80,9 +89,14 @@ public class ChoosePlayersActivity extends Activity{
         //初始化添加玩家时的弹出框
         initPopupView();
         addPlay = new PopupWindow(popupView, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, true);
-        addPlay.setFocusable(false);
-        addPlay.setTouchable(true);
         addPlay.setOutsideTouchable(true);
+        addPlay.setBackgroundDrawable(new ColorDrawable(0x55000000));
+        addPlay.setOnDismissListener(new PopupWindow.OnDismissListener() {
+            @Override
+            public void onDismiss() {
+                findViewById(R.id.add_player).setVisibility(View.VISIBLE);
+            }
+        });
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             addPlay.setElevation(2);
         }
@@ -90,26 +104,16 @@ public class ChoosePlayersActivity extends Activity{
 
     private void initPlayersList() {
         Gson gson = new Gson();
-        players = (List<Player>) Util.getListObject(sharedPreferences, spFileName, Player.class);
+        String s = sharedPreferences.getString(spFileName, "");
+        Type type = new TypeToken<List<Player>>() {
+        }.getType();
+        players = gson.fromJson(s, type);
     }
 
     @Click(R.id.add_player)
     public void addPlayer() {
-        Toast.makeText(this,"click",Toast.LENGTH_SHORT).show();
-        if (addPlay.isShowing()) {
-            addPlay.dismiss();
-            ((ImageView)findViewById(R.id.add_player)).setImageResource(R.drawable.add);
-            Player newP = new Player("avatar" + createPosition);
-            newP.setName(name.getText().toString());
-            players.add(newP);
-            selectAdapter.notifyDataSetChanged();
-            editor = sharedPreferences.edit();
-            editor.putString(spFileName, new Gson().toJson(players));
-            editor.apply();
-        }else {
-            addPlay.showAtLocation(popupView, Gravity.CENTER, 0, 0);
-            ((ImageView)findViewById(R.id.add_player)).setImageResource(R.drawable.gold);
-        }
+        addPlay.showAtLocation(popupView, Gravity.CENTER, 0, 0);
+        findViewById(R.id.add_player).setVisibility(View.INVISIBLE);
     }
 
     @Click(R.id.btn_player_one)
@@ -131,6 +135,7 @@ public class ChoosePlayersActivity extends Activity{
     void initPopupView() {
         if (popupView == null) {
             popupView = LayoutInflater.from(this).inflate(R.layout.popup_select_player, null);
+
             name = (EditText) popupView.findViewById(R.id.edit_name);
             createGrid = (GridView) popupView.findViewById(R.id.show_avatar);
             List<Player> playerList = new ArrayList<>();
@@ -151,7 +156,26 @@ public class ChoosePlayersActivity extends Activity{
                     createPosition = position;
                 }
             });
+            doneBtn = (ImageButton) popupView.findViewById(R.id.commit_add_player);
+            doneBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (createPosition == -1) {
+                        Toast.makeText(ChoosePlayersActivity.this, "请选择一个头像~", Toast.LENGTH_SHORT).show();
+                    } else if (("").equals(name.getText().toString())) {
+                        Toast.makeText(ChoosePlayersActivity.this, "你忘了输名字啦~", Toast.LENGTH_SHORT).show();
+                    } else {
+                        addPlay.dismiss();
+                        findViewById(R.id.add_player).setVisibility(View.VISIBLE);
+                        Player newP = new Player(name.getText().toString(), "avatar" + createPosition);
+                        players.add(newP);
+                        selectAdapter.notifyDataSetChanged();
+                        editor = sharedPreferences.edit();
+                        editor.putString(spFileName, new Gson().toJson(players));
+                        editor.apply();
+                    }
+                }
+            });
         }
     }
-
 }

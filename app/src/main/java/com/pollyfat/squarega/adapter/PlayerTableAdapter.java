@@ -61,29 +61,24 @@ public class PlayerTableAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
         if (tag == SELECT_LIST) {
-            //选择已存在的玩家
-            viewHolder.name.setText(players.get(position).getName());
-            viewHolder.avatar.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                }
-            });
+            if (players.get(0) != null) {
+                //选择已存在的玩家
+                viewHolder.name.setText(players.get(position).getName());
+                viewHolder.avatar.setImageResource(Util.getDrawableResourceByName(players.get(position).getAvatar(), context));
+            }
         } else {
             //创建玩家
             viewHolder.nameSpace.setVisibility(View.GONE);
-            viewHolder.avatar.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    viewHolder.metal.setVisibility(View.VISIBLE);
-                }
-            });
+            viewHolder.avatar.setImageResource(Util.getDrawableResourceByName(players.get(position).getAvatar(), context));
         }
-        viewHolder.avatar.setImageResource(Util.getDrawableResourceByName(players.get(position).getAvatar(), context));
 
         return convertView;
     }
 
+    void refreshData(List<Player> p){
+        players = p;
+        this.notifyDataSetChanged();
+    }
     class ViewHolder {
         ImageView avatar;
         TextView name;

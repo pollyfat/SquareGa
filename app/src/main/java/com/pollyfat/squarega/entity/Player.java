@@ -14,6 +14,11 @@ public class Player {
         this.avatar = avatar;
     }
 
+    public Player(String name, String avatar) {
+        this.name = name;
+        this.avatar = avatar;
+    }
+
     public String getName() {
         return name;
     }

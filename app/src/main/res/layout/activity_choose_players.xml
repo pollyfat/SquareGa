@@ -48,6 +48,7 @@
     <RelativeLayout
         android:id="@+id/choose_player_list"
         android:layout_width="match_parent"
+        android:padding="@dimen/activity_horizontal_margin"
         android:background="@color/player_one"
         android:layout_height="match_parent">
 
@@ -55,17 +56,15 @@
             android:id="@+id/player_table"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/dot_line"
-            android:visibility="invisible"
-            android:elevation="1dp"
-            android:gravity="center"
-            android:numColumns="auto_fit"
-            android:stretchMode="none" />
+            android:background="@drawable/dot_line_white"
+            android:gravity="center_horizontal"
+            android:numColumns="4"/>
 
         <ImageView
             android:id="@+id/add_player"
             android:layout_width="@dimen/add_player_btn_size"
             android:layout_height="@dimen/add_player_btn_size"
+            android:focusable="true"
             android:layout_alignBottom="@id/player_table"
             android:layout_centerHorizontal="true"
             android:layout_centerInParent="true"

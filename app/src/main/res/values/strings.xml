@@ -18,5 +18,6 @@
     <string name="title_activity_choose_or_create_player">ChooseOrCreatePlayer</string>
     <string name="choose_player_one">玩家一</string>
     <string name="choose_player_two">玩家二</string>
-    <string name="edit_name">请输入名字</string>
+    <string name="edit_name">取个名字吧~</string>
+    <string name="done">确定</string>
 </resources>

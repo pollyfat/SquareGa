@@ -1,33 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+    >
 
     <ImageView
         android:id="@+id/player_avatar"
         android:layout_width="@dimen/player_avatar_size"
         android:layout_height="@dimen/player_avatar_size"
-        android:src="@drawable/gold" />
+        android:src="@drawable/gold"/>
 
     <RelativeLayout
         android:id="@+id/name_space"
-        android:layout_alignBottom="@id/player_avatar"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="45dp">
+
         <ImageView
             android:layout_width="@dimen/player_avatar_size"
             android:layout_height="25dp"
-            android:src="@drawable/ribbon" />
+            android:src="@drawable/ribbon"/>
+
         <TextView
             android:id="@+id/player_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
             android:paddingBottom="2dp"
-            android:textSize="10sp"
-            android:text="playername" />
+            android:text="playername"
+            android:textSize="10sp"/>
 
     </RelativeLayout>
 
@@ -37,6 +40,6 @@
         android:layout_height="@dimen/medal_height"
         android:layout_alignBottom="@id/player_avatar"
         android:layout_alignRight="@id/player_avatar"
-        android:visibility="gone"
-        android:src="@drawable/medal" />
+        android:src="@drawable/medal"
+        android:visibility="gone"/>
 </RelativeLayout>
