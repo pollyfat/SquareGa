@@ -46,7 +46,7 @@ public class ChoosePlayersActivity extends Activity{
     public static final String spFileName = "PlayerList";
 
     List<Player> players;
-    Player playerOne, playerTwo;
+    Player playerOne, playerTwo,playerCom = new Player("电脑君","avatar_cp");
 
     @ViewById(R.id.player_table)
     GridView selectGrid;
@@ -70,6 +70,7 @@ public class ChoosePlayersActivity extends Activity{
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
     int selectPosition = -1, createPosition = -1;
+    boolean isFirstPlayer = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,6 +87,16 @@ public class ChoosePlayersActivity extends Activity{
         //初始化展示玩家头像的gridView
         selectAdapter = new PlayerTableAdapter(this, players, PlayerTableAdapter.SELECT_LIST);
         selectGrid.setAdapter(selectAdapter);
+        selectGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if (isFirstPlayer) {
+                    playerOne = players.get(position);
+                }else {
+                    playerTwo = players.get(position);
+                }
+            }
+        });
         //初始化添加玩家时的弹出框
         initPopupView();
         addPlay = new PopupWindow(popupView, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, true);
@@ -121,6 +132,11 @@ public class ChoosePlayersActivity extends Activity{
         btnRoot.removeAllViews();
         btnRoot.addView(pTwo);
         btnRoot.addView(pOne);
+        if (players.get(0).equals(playerCom)) {
+            players.remove(playerCom);
+        }
+        isFirstPlayer = true;
+        selectAdapter.notifyDataSetChanged();
         listRoot.setBackgroundColor(ContextCompat.getColor(this, R.color.player_one));
     }
 
@@ -129,6 +145,9 @@ public class ChoosePlayersActivity extends Activity{
         btnRoot.removeAllViews();
         btnRoot.addView(pOne);
         btnRoot.addView(pTwo);
+        players.add(0,playerCom);
+        isFirstPlayer = false;
+        selectAdapter.notifyDataSetChanged();
         listRoot.setBackgroundColor(ContextCompat.getColor(this, R.color.player_two));
     }
 

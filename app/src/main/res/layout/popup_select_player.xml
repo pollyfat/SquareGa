@@ -18,7 +18,7 @@
 
     <GridView
         android:id="@+id/show_avatar"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_marginBottom="@dimen/activity_vertical_margin"
         android:layout_marginTop="@dimen/activity_vertical_margin"
@@ -31,5 +31,4 @@
         android:layout_marginTop="@dimen/activity_horizontal_margin"
         android:layout_width="@dimen/add_player_btn_size"
         android:layout_height="@dimen/add_player_btn_size"/>
-
 </LinearLayout>
