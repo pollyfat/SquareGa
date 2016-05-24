@@ -75,10 +75,6 @@ public class PlayerTableAdapter extends BaseAdapter {
         return convertView;
     }
 
-    void refreshData(List<Player> p){
-        players = p;
-        this.notifyDataSetChanged();
-    }
     class ViewHolder {
         ImageView avatar;
         TextView name;

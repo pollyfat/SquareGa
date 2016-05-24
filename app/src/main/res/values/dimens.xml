@@ -15,7 +15,9 @@
     <dimen name="start_text_size">25sp</dimen>
     <dimen name="start_name_text_size">30sp</dimen>
     <dimen name="fab_margin">16dp</dimen>
-    <dimen name="add_player_btn_size">50dp</dimen>
+    <dimen name="add_player_btn_size">40dp</dimen>
+    <dimen name="select_player_btn_height">45dp</dimen>
+    <dimen name="select_player_btn_width">150dp</dimen>
     <dimen name="choose_player_btn_padding">40dp</dimen>
     <dimen name="player_avatar_size">65dp</dimen>
     <dimen name="medal_width">25dp</dimen>

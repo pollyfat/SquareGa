@@ -20,7 +20,9 @@
         <activity android:name=".activity.RankingListActivity_" />
         <activity android:name=".activity.GameWinActivity_" />
         <activity android:name=".activity.SettingActivity_" />
-        <activity android:name=".activity.ChoosePlayersActivity_"></activity>
+        <activity
+            android:name=".activity.ChoosePlayersActivity_"
+            android:windowSoftInputMode="adjustPan"/>
     </application>
 
 </manifest>

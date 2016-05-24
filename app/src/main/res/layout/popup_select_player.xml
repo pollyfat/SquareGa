@@ -30,5 +30,6 @@
         android:background="@drawable/ok"
         android:layout_marginTop="@dimen/activity_horizontal_margin"
         android:layout_width="@dimen/add_player_btn_size"
+        android:visibility="gone"
         android:layout_height="@dimen/add_player_btn_size"/>
 </LinearLayout>

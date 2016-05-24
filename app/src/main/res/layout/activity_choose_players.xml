@@ -1,78 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/choose_player_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/choose_player_bg"
-    android:orientation="vertical"
-    android:padding="@dimen/activity_horizontal_margin"
     tools:context="com.pollyfat.squarega.activity.ChoosePlayersActivity">
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingTop="-64dp"
-        android:src="@drawable/ribbon_square" />
-
-    <RelativeLayout
-        android:id="@+id/btn_root"
+    <LinearLayout
+        android:id="@+id/choose_player_root"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        android:background="@color/choose_player_bg"
+        android:orientation="vertical"
+        android:padding="@dimen/activity_horizontal_margin">
 
-        <Button
-            android:id="@+id/btn_player_one"
+
+        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/player_one_bg"
-            android:paddingLeft="@dimen/choose_player_btn_padding"
-            android:paddingRight="@dimen/choose_player_btn_padding"
-            android:text="@string/choose_player_one" />
+            android:layout_gravity="center_horizontal"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingTop="-64dp"
+            android:src="@drawable/ribbon_square" />
 
-        <Button
-            android:id="@+id/btn_player_two"
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:id="@+id/btn_root"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="-15dp"
-            android:layout_toRightOf="@id/btn_player_one"
-            android:background="@drawable/player_two_bg"
-            android:paddingLeft="@dimen/choose_player_btn_padding"
-            android:paddingRight="@dimen/choose_player_btn_padding"
-            android:text="@string/choose_player_two" />
-    </RelativeLayout>
+            android:orientation="horizontal">
 
-    <RelativeLayout
-        android:id="@+id/choose_player_list"
-        android:layout_width="match_parent"
-        android:padding="@dimen/activity_horizontal_margin"
-        android:background="@color/player_one"
-        android:layout_height="match_parent">
+            <Button
+                android:id="@+id/btn_player_one"
+                android:layout_width="@dimen/select_player_btn_width"
+                android:layout_height="@dimen/select_player_btn_height"
+                android:background="@drawable/player_one"
+                android:paddingLeft="@dimen/choose_player_btn_padding"
+                android:paddingRight="@dimen/choose_player_btn_padding"
+                android:text="@string/choose_player_one" />
 
-        <GridView
-            android:id="@+id/player_table"
+            <Button
+                android:id="@+id/btn_player_two"
+                android:layout_width="@dimen/select_player_btn_width"
+                android:layout_height="@dimen/select_player_btn_height"
+                android:layout_toEndOf="@id/btn_player_one"
+                android:background="@drawable/player_two_shadow"
+                android:paddingLeft="@dimen/choose_player_btn_padding"
+                android:paddingRight="@dimen/choose_player_btn_padding"
+                android:text="@string/choose_player_two" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/choose_player_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/dot_line_white"
-            android:gravity="center_horizontal"
-            android:numColumns="4"/>
+            android:background="@color/player_one"
+            android:padding="@dimen/activity_horizontal_margin">
+
+            <GridView
+                android:id="@+id/player_table"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/dot_line_white"
+                android:gravity="center_horizontal"
+                android:numColumns="4" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal|bottom"
+        android:orientation="vertical">
+
+        <ViewStub
+            android:id="@+id/pop_viewstub"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/activity_horizontal_margin"
+            android:layout="@layout/popup_select_player" />
 
         <ImageView
             android:id="@+id/add_player"
             android:layout_width="@dimen/add_player_btn_size"
             android:layout_height="@dimen/add_player_btn_size"
-            android:focusable="true"
-            android:layout_alignBottom="@id/player_table"
-            android:layout_centerHorizontal="true"
-            android:layout_centerInParent="true"
             android:layout_marginBottom="@dimen/choose_player_btn_padding"
             android:background="@drawable/circle_bg"
-            android:elevation="2dp"
+            android:focusable="true"
             android:padding="5dp"
             android:src="@drawable/add" />
-    </RelativeLayout>
-
-</LinearLayout>
+    </LinearLayout>
+</FrameLayout>
