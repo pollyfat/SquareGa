@@ -13,4 +13,7 @@
     <color name="white">#ffffff</color>
     <color name="edit_text_bg">#EDEDED</color>
     <color name="edit_text_hint">#CDE2DB</color>
+    <color name="level_two">#e9e9a5</color>
+    <color name="level_three">#f6bb77</color>
+    <color name="level_four">#aed0b0</color>
 </resources>

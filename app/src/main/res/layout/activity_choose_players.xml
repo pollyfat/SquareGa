@@ -88,9 +88,7 @@
             android:layout_width="@dimen/add_player_btn_size"
             android:layout_height="@dimen/add_player_btn_size"
             android:layout_marginBottom="@dimen/choose_player_btn_padding"
-            android:background="@drawable/circle_bg"
             android:focusable="true"
-            android:padding="5dp"
             android:src="@drawable/add" />
     </LinearLayout>
 </FrameLayout>

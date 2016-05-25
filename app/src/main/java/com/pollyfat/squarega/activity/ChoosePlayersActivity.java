@@ -98,8 +98,8 @@ public class ChoosePlayersActivity extends Activity {
                     playerTwo = players.get(position);
                 }
                 if (playerOne != null & playerTwo != null) {
-                    operateBtn.setBackgroundResource(R.drawable.play_btn_anim);
-                    AnimationDrawable anim = (AnimationDrawable) operateBtn.getBackground();
+                    operateBtn.setImageResource(R.drawable.play_btn_anim);
+                    AnimationDrawable anim = (AnimationDrawable) operateBtn.getDrawable();
                     anim.start();
                 }
             }
@@ -138,7 +138,7 @@ public class ChoosePlayersActivity extends Activity {
         if (popView == null) {
             //初始化添加玩家时的弹出框
             initPopupView();
-            operateBtn.setBackgroundResource(R.drawable.ok);
+            operateBtn.setImageResource(R.drawable.ok);
         } else {
             if (popView.getVisibility() == View.VISIBLE) {
                 if (createPosition == -1) {
@@ -157,7 +157,7 @@ public class ChoosePlayersActivity extends Activity {
                 }
             } else {
                 popView.setVisibility(View.VISIBLE);
-                operateBtn.setBackgroundResource(R.drawable.ok);
+                operateBtn.setImageResource(R.drawable.ok);
             }
         }
     }

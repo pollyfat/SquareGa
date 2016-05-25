@@ -6,9 +6,11 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.pollyfat.squarega.R;
+import com.pollyfat.squarega.entity.Player;
 
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.Extra;
 
 /**
  * 选择对手和关卡
@@ -17,24 +19,12 @@ import org.androidannotations.annotations.EActivity;
 @EActivity(R.layout.activity_choose_level)
 public class ChooseLevelActivity extends Activity {
 
-    String rival = "";
     int level = -1;
 
-    @Click({R.id.fight_com, R.id.fight_pep})
-    void chooseCom(View clickedView) {
-        switch (clickedView.getId()) {
-            case R.id.fight_com:
-                rival = "computer";
-                findViewById(R.id.flag_com).setVisibility(View.VISIBLE);
-                findViewById(R.id.flag_pep).setVisibility(View.INVISIBLE);
-                break;
-            case R.id.fight_pep:
-                rival = "people";
-                findViewById(R.id.flag_com).setVisibility(View.INVISIBLE);
-                findViewById(R.id.flag_pep).setVisibility(View.VISIBLE);
-                break;
-        }
-    }
+    @Extra
+    Player playerOne;
+    @Extra
+    Player playerTwo;
 
     @Click({R.id.difficult_two, R.id.difficult_three, R.id.difficult_four, R.id.difficult_five})
     void chooseDiff(View clickedView) {
@@ -60,18 +50,14 @@ public class ChooseLevelActivity extends Activity {
                 findViewById(R.id.flag_five).setVisibility(View.VISIBLE);
                 break;
         }
-
     }
 
     @Click(R.id.start)
     void startGame() {
-        if (rival.equals("")) {
-            Toast.makeText(ChooseLevelActivity.this, this.getString(R.string.rival_not_chosen), Toast.LENGTH_SHORT).show();
-        } else if (level==-1) {
+         if (level==-1) {
             Toast.makeText(ChooseLevelActivity.this, this.getString(R.string.level_not_chosen), Toast.LENGTH_SHORT).show();
         } else {
             Intent intent = new Intent(ChooseLevelActivity.this, StartActivity_.class);
-            intent.putExtra("rival", rival);
             intent.putExtra("level", level);
             startActivity(intent);
         }
