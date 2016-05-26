@@ -20,4 +20,14 @@
     <string name="choose_player_two">玩家二</string>
     <string name="edit_name">取个名字吧~</string>
     <string name="done">确定</string>
+    <string name="weibosdk_demo_share_text_template">weibo1</string>
+    <string name="weibosdk_demo_app_url">https://github.com/mobileresearch/weibo_android_sdk/blob/master/WeiboSDKDemo.apk</string>
+    <string name="weibosdk_demo_share_webpage_template">【%1$s】（分享自 WeiboSDKDemo %2$s）</string>
+    <string name="weibosdk_demo_share_webpage_demo">XXX 新闻</string>
+    <string name="weibosdk_demo_share_music_demo">XXX 音乐</string>
+    <string name="weibosdk_demo_share_video_demo">XXX 视频</string>
+    <string name="weibosdk_demo_share_voice_demo">XXX 声音</string>
+    <string name="weibosdk_demo_share_music_template">我正在听 %1$s（分享自 WeiboSDKDemo %2$s）</string>
+    <string name="weibosdk_demo_share_video_template">我正在看 %1$s（分享自 WeiboSDKDemo %2$s）</string>
+    <string name="weibosdk_demo_share_voice_template">我分享了 %1$s（分享自 WeiboSDKDemo %2$s）</string>
 </resources>

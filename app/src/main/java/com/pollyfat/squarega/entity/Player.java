@@ -1,10 +1,12 @@
 package com.pollyfat.squarega.entity;
 
+import java.io.Serializable;
+
 /**
  * 玩家对象
  * Created by bugre on 2016/4/26.
  */
-public class Player {
+public class Player implements Serializable{
     private String name;
     private int winCount;//获胜局数
     private int winSquare;//获得的方块数

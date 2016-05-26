@@ -16,7 +16,7 @@ import com.pollyfat.squarega.util.Util;
 import java.util.List;
 
 /**
- * Created by android on 2016/5/19.
+ * Created by polly on 2016/5/19.
  */
 public class PlayerTableAdapter extends BaseAdapter {
     public static final int SELECT_LIST = 0, CREATE_LIST = 1;

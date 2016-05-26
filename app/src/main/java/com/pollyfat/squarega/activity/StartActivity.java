@@ -28,7 +28,6 @@ import java.util.Map;
 
 /**
  * Created by polly on 2016/3/18.
- * <p/>
  * 游戏界面
  */
 @EActivity

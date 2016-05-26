@@ -23,4 +23,5 @@
     <dimen name="medal_width">25dp</dimen>
     <dimen name="medal_height">35dp</dimen>
     <dimen name="edit_text_padding">12dp</dimen>
+    <dimen name="level_btn_size">120dp</dimen>
 </resources>

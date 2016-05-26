@@ -49,4 +49,5 @@ dependencies {
     compile 'org.jetbrains:annotations-java5:15.0'
     compile 'com.android.support:design:23.4.0'
     compile 'com.google.code.gson:gson:2.4'
+    compile files('D:/asworkspace/SquareGa/libs/weiboSDKCore_3.1.4.jar')
 }

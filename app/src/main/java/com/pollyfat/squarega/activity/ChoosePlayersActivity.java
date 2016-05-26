@@ -2,6 +2,7 @@ package com.pollyfat.squarega.activity;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.ColorDrawable;
@@ -156,8 +157,17 @@ public class ChoosePlayersActivity extends Activity {
                     editor.apply();
                 }
             } else {
-                popView.setVisibility(View.VISIBLE);
-                operateBtn.setImageResource(R.drawable.ok);
+                if (playerOne != null && playerTwo != null) {
+                    Intent intent = new Intent(this, ChooseLevelActivity_.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("playerOne",playerOne);
+                    bundle.putSerializable("playerTwo",playerTwo);
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                }else {
+                    popView.setVisibility(View.VISIBLE);
+                    operateBtn.setImageResource(R.drawable.ok);
+                }
             }
         }
     }
@@ -178,7 +188,9 @@ public class ChoosePlayersActivity extends Activity {
     public void selectPlayerTwo() {
         findViewById(R.id.btn_player_one).setBackgroundResource(R.drawable.player_one_shadow);
         findViewById(R.id.btn_player_two).setBackgroundResource(R.drawable.player_two);
-        players.add(0, playerCom);
+        if (!players.get(0).equals(playerCom)) {
+            players.add(0, playerCom);
+        }
         isFirstPlayer = false;
         selectAdapter.notifyDataSetChanged();
         listRoot.setBackgroundColor(ContextCompat.getColor(this, R.color.player_two));
