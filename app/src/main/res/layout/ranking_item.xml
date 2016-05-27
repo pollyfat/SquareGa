@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/activity_horizontal_margin"
+    android:background="@drawable/dot_bg"
+    android:padding="@dimen/activity_horizontal_margin"
+    android:orientation="horizontal">
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|center_vertical"
+        android:layout_weight="3"
+        android:gravity="center_horizontal">
+
+        <ImageView
+            android:id="@+id/avatar_player_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/player_1_ribbon"
+            android:src="@drawable/avatar0" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/player_1_ribbon"
+            android:src="@drawable/ribbon" />
+
+        <ImageView
+            android:id="@+id/player_1_ribbon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/avatar_player_1"
+            android:layout_marginBottom="15dp"
+            android:src="@drawable/ribbon_lose" />
+
+        <TextView
+            android:id="@+id/player_1_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/player_1_ribbon"
+            android:layout_alignRight="@id/player_1_ribbon"
+            android:layout_alignTop="@id/player_1_ribbon"
+            android:gravity="center_horizontal"
+            android:text="@string/app_name" />
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|center_vertical"
+        android:layout_weight="2"
+        android:src="@drawable/vs" />
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|center_vertical"
+        android:layout_weight="3"
+        android:gravity="center_horizontal">
+
+        <ImageView
+            android:id="@+id/avatar_player_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/player_2_ribbon_lose"
+            android:src="@drawable/avatar0" />
+
+        <ImageView
+            android:id="@+id/player_2_ribbon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/avatar_player_2"
+            android:layout_marginBottom="15dp"
+            android:src="@drawable/ribbon" />
+
+        <ImageView
+            android:id="@+id/player_2_ribbon_lose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/player_2_ribbon"
+            android:src="@drawable/ribbon_lose" />
+
+        <TextView
+            android:id="@+id/player_2_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/player_2_ribbon"
+            android:layout_alignRight="@id/player_2_ribbon"
+            android:layout_alignTop="@id/player_2_ribbon"
+            android:gravity="center_horizontal"
+            android:text="@string/app_name" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="3"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/player_one_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:textColor="@color/text_color" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/vs"
+            android:textColor="@color/text_color" />
+
+        <TextView
+            android:id="@+id/player_two_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:textColor="@color/text_color" />
+
+        <TextView
+            android:id="@+id/level"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:textColor="@color/text_color" />
+
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:textColor="@color/text_color" />
+
+        <TextView
+            android:id="@+id/time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:textColor="@color/text_color" />
+    </LinearLayout>
+</LinearLayout>

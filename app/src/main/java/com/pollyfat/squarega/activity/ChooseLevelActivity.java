@@ -2,6 +2,7 @@ package com.pollyfat.squarega.activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
@@ -26,40 +27,45 @@ public class ChooseLevelActivity extends Activity {
     @Extra
     Player playerTwo;
 
-    @Click({R.id.difficult_two, R.id.difficult_three, R.id.difficult_four, R.id.difficult_five})
+    @Click({R.id.level_easy, R.id.level_normal, R.id.level_hard})
     void chooseDiff(View clickedView) {
-        findViewById(R.id.flag_two).setVisibility(View.INVISIBLE);
-        findViewById(R.id.flag_three).setVisibility(View.INVISIBLE);
-        findViewById(R.id.flag_four).setVisibility(View.INVISIBLE);
-        findViewById(R.id.flag_five).setVisibility(View.INVISIBLE);
+        findViewById(R.id.medal_easy).setVisibility(View.INVISIBLE);
+        findViewById(R.id.medal_normal).setVisibility(View.INVISIBLE);
+        findViewById(R.id.medal_hard).setVisibility(View.INVISIBLE);
         switch (clickedView.getId()) {
-            case R.id.difficult_two:
-                level = 2;
-                findViewById(R.id.flag_two).setVisibility(View.VISIBLE);
-                break;
-            case R.id.difficult_three:
+            case R.id.level_easy:
                 level = 3;
-                findViewById(R.id.flag_three).setVisibility(View.VISIBLE);
+                findViewById(R.id.medal_easy).setVisibility(View.VISIBLE);
                 break;
-            case R.id.difficult_four:
+            case R.id.level_normal:
                 level = 4;
-                findViewById(R.id.flag_four).setVisibility(View.VISIBLE);
+                findViewById(R.id.medal_normal).setVisibility(View.VISIBLE);
                 break;
-            case R.id.difficult_five:
+            case R.id.level_hard:
                 level = 5;
-                findViewById(R.id.flag_five).setVisibility(View.VISIBLE);
+                findViewById(R.id.medal_hard).setVisibility(View.VISIBLE);
                 break;
         }
     }
 
-    @Click(R.id.start)
+    @Click(R.id.level_start)
     void startGame() {
-         if (level==-1) {
+        if (level == -1) {
             Toast.makeText(ChooseLevelActivity.this, this.getString(R.string.level_not_chosen), Toast.LENGTH_SHORT).show();
         } else {
             Intent intent = new Intent(ChooseLevelActivity.this, StartActivity_.class);
-            intent.putExtra("level", level);
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("playerOne", playerOne);
+            bundle.putSerializable("playerTwo", playerTwo);
+            bundle.putInt("level", level);
+            intent.putExtras(bundle);
             startActivity(intent);
         }
+    }
+
+
+    @Click(R.id.level_back)
+    void back() {
+        this.finish();
     }
 }

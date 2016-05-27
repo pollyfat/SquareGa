@@ -19,7 +19,7 @@
 
         <ImageView
             android:layout_width="@dimen/player_avatar_size"
-            android:layout_height="25dp"
+            android:layout_height="@dimen/ribbon_height"
             android:src="@drawable/ribbon"/>
 
         <TextView

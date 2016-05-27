@@ -22,11 +22,14 @@ public class MainActivity extends Activity {
 
     @Click(R.id.main_gold)
     void goldWasClicked(){
+        Intent intent = new Intent(MainActivity.this, RankingListActivity_.class);
+        startActivity(intent);
     }
 
     @Click(R.id.main_setting)
     void settingWasClicked(){
-
+        Intent intent = new Intent(MainActivity.this, SettingActivity_.class);
+        startActivity(intent);
     }
 
     @Override

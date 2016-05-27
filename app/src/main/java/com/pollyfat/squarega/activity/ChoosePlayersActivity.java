@@ -57,7 +57,7 @@ public class ChoosePlayersActivity extends Activity {
     PlayerTableAdapter selectAdapter;
     @ViewById(R.id.add_player)
     ImageView operateBtn;
-    
+
     PopupWindow addPlay;
     View popupView;
     EditText name;
@@ -66,7 +66,7 @@ public class ChoosePlayersActivity extends Activity {
 
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
-    int createPosition = -1;
+    int selectPosition1 = -1, selectPosition2 = -1, createPosition = -1;
     boolean isFirstPlayer = true;
 
     private View popView;
@@ -95,8 +95,23 @@ public class ChoosePlayersActivity extends Activity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (isFirstPlayer) {
                     playerOne = players.get(position);
+                    //点击其他玩家时将刚才选择的玩家的标识设为隐藏
+                    if (selectPosition1 != -1)
+                        createGrid.getChildAt(selectPosition1).findViewById(R.id.avatar_medal).setVisibility(View.INVISIBLE);
+                    View playerItem = selectGrid.getChildAt(position);
+                    playerItem.findViewById(R.id.avatar_medal).setVisibility(View.VISIBLE);
+                    selectAdapter.notifyDataSetChanged();
+                    selectPosition1 = position;
                 } else {
+                    //TODO 徽章显示问题
                     playerTwo = players.get(position);
+                    //点击其他玩家时将刚才选择的玩家的标识设为隐藏
+                    if (selectPosition2 != -1)
+                        createGrid.getChildAt(selectPosition2).findViewById(R.id.avatar_medal).setVisibility(View.INVISIBLE);
+                    View playerItem = selectGrid.getChildAt(position);
+                    playerItem.findViewById(R.id.avatar_medal).setVisibility(View.VISIBLE);
+                    selectAdapter.notifyDataSetChanged();
+                    selectPosition2 = position;
                 }
                 if (playerOne != null & playerTwo != null) {
                     operateBtn.setImageResource(R.drawable.play_btn_anim);
@@ -151,7 +166,14 @@ public class ChoosePlayersActivity extends Activity {
                     operateBtn.setImageResource(R.drawable.add);
                     Player newP = new Player(name.getText().toString(), "avatar" + createPosition);
                     players.add(newP);
+                    //将选择和输入重置
+                    name.setText("");
+                    createGrid.getChildAt(createPosition).findViewById(R.id.avatar_medal).setVisibility(View.INVISIBLE);
+
                     selectAdapter.notifyDataSetChanged();
+                    createAdapter.notifyDataSetChanged();
+
+                    //将创建的玩家加入列表中
                     editor = sharedPreferences.edit();
                     editor.putString(spFileName, new Gson().toJson(players));
                     editor.apply();
@@ -160,11 +182,11 @@ public class ChoosePlayersActivity extends Activity {
                 if (playerOne != null && playerTwo != null) {
                     Intent intent = new Intent(this, ChooseLevelActivity_.class);
                     Bundle bundle = new Bundle();
-                    bundle.putSerializable("playerOne",playerOne);
-                    bundle.putSerializable("playerTwo",playerTwo);
+                    bundle.putSerializable("playerOne", playerOne);
+                    bundle.putSerializable("playerTwo", playerTwo);
                     intent.putExtras(bundle);
                     startActivity(intent);
-                }else {
+                } else {
                     popView.setVisibility(View.VISIBLE);
                     operateBtn.setImageResource(R.drawable.ok);
                 }
@@ -180,6 +202,12 @@ public class ChoosePlayersActivity extends Activity {
             players.remove(playerCom);
         }
         isFirstPlayer = true;
+        if (playerTwo != null) {
+            players.remove(playerTwo);
+        }
+        if (playerOne != null) {
+            players.add(selectPosition1,playerOne);
+        }
         selectAdapter.notifyDataSetChanged();
         listRoot.setBackgroundColor(ContextCompat.getColor(this, R.color.player_one));
     }
@@ -188,8 +216,14 @@ public class ChoosePlayersActivity extends Activity {
     public void selectPlayerTwo() {
         findViewById(R.id.btn_player_one).setBackgroundResource(R.drawable.player_one_shadow);
         findViewById(R.id.btn_player_two).setBackgroundResource(R.drawable.player_two);
-        if (!players.get(0).equals(playerCom)) {
+        if (players.size() == 0 || !players.get(0).equals(playerCom)) {
             players.add(0, playerCom);
+        }
+        if (playerOne != null) {
+            players.remove(playerOne);
+        }
+        if (playerTwo != null) {
+            players.add(selectPosition2,playerTwo);
         }
         isFirstPlayer = false;
         selectAdapter.notifyDataSetChanged();
