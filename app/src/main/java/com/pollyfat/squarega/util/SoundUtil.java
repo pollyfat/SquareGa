@@ -17,7 +17,6 @@ import com.pollyfat.squarega.R;
 
 /**
  * 声音控制类
- * @author wyf
  *
  */
 public class SoundUtil {
@@ -49,8 +48,7 @@ public class SoundUtil {
     private static void initSound()
     {
         soundPool = new SoundPool(10,AudioManager.STREAM_MUSIC,100);
-
-        soundMap = new HashMap<Integer,Integer>();
+        soundMap = new HashMap<>();
         soundMap.put(R.raw.bg_music, soundPool.load(context, R.raw.bg_music, 1));
     }
 
@@ -81,8 +79,9 @@ public class SoundUtil {
      */
     public static void pauseMusic()
     {
-        if(music.isPlaying())
+        if (music.isPlaying()) {
             music.pause();
+        }
     }
 
     /**
@@ -90,8 +89,9 @@ public class SoundUtil {
      */
     public static void startMusic()
     {
-        if(musicSt)
+        if (musicSt) {
             music.start();
+        }
     }
 
     /**
@@ -112,17 +112,28 @@ public class SoundUtil {
     public static boolean isMusicSt() {
         return musicSt;
     }
+//
+//    /**
+//     * 设置音乐开关
+//     * @param musicSt
+//     */
+//    public static void setMusicSt(boolean musicSt) {
+//        SoundUtil.musicSt = musicSt;
+//        if(musicSt)
+//            music.start();
+//        else
+//            music.stop();
+//    }
 
-    /**
-     * 设置音乐开关
-     * @param musicSt
-     */
-    public static void setMusicSt(boolean musicSt) {
-        SoundUtil.musicSt = musicSt;
-        if(musicSt)
-            music.start();
-        else
+    public static void musicToggle(){
+        if(musicSt) {
             music.stop();
+            musicSt = false;
+        }
+        else {
+            music.start();
+            musicSt = true;
+        }
     }
 
 //    /**

@@ -1,17 +1,143 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.pollyfat.squarega.activity.SettingActivity">
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context="com.pollyfat.squarega.activity.SettingActivity">
 
     <ImageButton
+        android:id="@+id/back"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        android:layout_width="@dimen/back_btn_size"
+        android:layout_height="@dimen/back_btn_size"
+        android:background="@drawable/back"/>
+
+    <ImageButton
+        android:layout_below="@id/back"
         android:id="@+id/setting_music"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_width="@dimen/main_btn_size"
+        android:layout_height="@dimen/main_btn_size"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        android:background="@drawable/turn_on_bgmusic"/>
+
     <ImageButton
         android:id="@+id/setting_about"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_width="@dimen/main_btn_size"
+        android:layout_height="@dimen/main_btn_size"
+        android:layout_below="@id/setting_music"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        android:background="@drawable/about"/>
 
+    <ImageView
+        android:id="@+id/setting_about_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/setting_about"
+        android:layout_marginBottom="20dp"
+        android:src="@drawable/dot_line_about"
+        android:visibility="invisible"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/setting_about"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="18dp"
+        android:text="@string/about"
+        android:textColor="@color/start_score"
+        android:textSize="23sp"
+        android:id="@+id/about"
+        android:visibility="invisible"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/scroll_texts"
+        android:layout_marginLeft="70dp"
+        android:layout_marginRight="70dp"
+        android:layout_marginTop="80dp"
+        android:layout_alignBottom="@id/setting_about_text"
+        android:layout_marginBottom="20dp"
+        android:scrollbars="none"
+        android:layout_alignTop="@id/setting_about_text"
+        android:visibility="invisible">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="@dimen/rule_margin_bottom"
+                android:text="@string/game_rule"
+                android:textColor="@color/green"
+                android:textSize="20sp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/rule_margin_bottom"
+                android:text="@string/rules_one"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/rule_margin_bottom"
+                android:text="@string/rules_two"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/rule_margin_bottom"
+                android:text="@string/rules_three"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/rule_margin_bottom"
+                android:text="@string/rules_four"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="@dimen/rule_margin_bottom"
+                android:text="@string/brief"
+                android:textColor="@color/start_score"
+                android:textSize="20sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="@dimen/rule_margin_bottom"
+                android:text="@string/about_game"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="@dimen/rule_margin_bottom"
+                android:text="@string/about_developer"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="@dimen/rule_margin_bottom"
+                android:text="@string/about_designer"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="@dimen/rule_margin_bottom"
+                android:text="@string/about_supporter"/>
+        </LinearLayout>
+    </ScrollView>
 </RelativeLayout>

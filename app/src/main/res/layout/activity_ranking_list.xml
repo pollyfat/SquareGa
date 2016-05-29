@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/choose_player_root"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/choose_player_bg"
-    android:orientation="vertical"
-    android:padding="@dimen/activity_horizontal_margin">
+              android:id="@+id/ranking_root"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/choose_player_bg"
+              android:orientation="vertical"
+              android:padding="@dimen/activity_horizontal_margin">
 
     <ImageView
         android:layout_width="wrap_content"
@@ -14,13 +14,12 @@
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="-64dp"
-        android:src="@drawable/record" />
+        android:src="@drawable/record"/>
 
     <RelativeLayout
         android:id="@+id/btn_root"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content">
 
         <Button
             android:id="@+id/btn_player_one"
@@ -29,7 +28,7 @@
             android:background="@drawable/player_one"
             android:paddingLeft="@dimen/choose_player_btn_padding"
             android:paddingRight="@dimen/choose_player_btn_padding"
-            android:text="@string/choose_player_one" />
+            android:text="@string/ranking_com"/>
 
         <Button
             android:id="@+id/btn_player_two"
@@ -39,7 +38,7 @@
             android:background="@drawable/player_two_shadow"
             android:paddingLeft="@dimen/choose_player_btn_padding"
             android:paddingRight="@dimen/choose_player_btn_padding"
-            android:text="@string/choose_player_two" />
+            android:text="@string/ranking_man"/>
     </RelativeLayout>
 
     <ListView
@@ -48,6 +47,6 @@
         android:layout_height="wrap_content"
         android:background="@color/player_one"
         android:divider="@null"
-        android:padding="@dimen/activity_horizontal_margin" />
+        android:padding="@dimen/activity_horizontal_margin"/>
 
 </LinearLayout>

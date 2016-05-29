@@ -18,8 +18,11 @@
     <string name="title_activity_choose_or_create_player">ChooseOrCreatePlayer</string>
     <string name="choose_player_one">玩家一</string>
     <string name="choose_player_two">玩家二</string>
+    <string name="ranking_com">人机对战</string>
+    <string name="ranking_man">本地对战</string>
     <string name="edit_name">取个名字吧~</string>
     <string name="done">确定</string>
+    <string name="choose_avatar">请选择头像</string>
     <string name="weibosdk_demo_share_text_template">weibo1</string>
     <string name="weibosdk_demo_app_url">https://github.com/mobileresearch/weibo_android_sdk/blob/master/WeiboSDKDemo.apk</string>
     <string name="weibosdk_demo_share_webpage_template">【%1$s】（分享自 WeiboSDKDemo %2$s）</string>
@@ -32,4 +35,15 @@
     <string name="weibosdk_demo_share_voice_template">我分享了 %1$s（分享自 WeiboSDKDemo %2$s）</string>
     <string name="choose_level">选择难度</string>
     <string name="vs">vs</string>
+    <string name="game_rule">游戏规则</string>
+    <string name="rules_one">1.游戏可以选择两个模式，人机对战或者本地双人游戏。</string>
+    <string name="rules_two">2.两个玩家轮流连接画布中的两个点，只可以连接上下左右四个方向的点，不可斜向连接或跨点连接。</string>
+    <string name="rules_three">3.每个方块的最后一条边被哪一个玩家连接，则该玩家占领该方块，并且获得额外一笔的资格。</string>
+    <string name="rules_four">4.当所有方块都被连接后，占领方块多的一方获胜。</string>
+    <string name="about">关于</string>
+    <string name="brief">游戏开发简介</string>
+    <string name="about_game">本游戏由黄鹛、李亚共同开发</string>
+    <string name="about_developer">游戏进行逻辑由黄鹛开发，游戏附加功能由李亚开发</string>
+    <string name="about_designer">游戏界面由李亚设计</string>
+    <string name="about_supporter">本游戏由李亚特约精神赞助</string>
 </resources>

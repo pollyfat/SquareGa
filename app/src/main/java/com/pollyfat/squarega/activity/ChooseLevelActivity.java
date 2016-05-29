@@ -20,6 +20,11 @@ import org.androidannotations.annotations.Extra;
 @EActivity(R.layout.activity_choose_level)
 public class ChooseLevelActivity extends Activity {
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
     int level = -1;
 
     @Extra

@@ -17,4 +17,5 @@
     <color name="level_three">#f6bb77</color>
     <color name="level_four">#aed0b0</color>
     <color name="choose_level_text_color">#ffa550</color>
+    <color name="green">#53c13d</color>
 </resources>
