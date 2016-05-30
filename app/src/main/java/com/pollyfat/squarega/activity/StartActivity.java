@@ -6,7 +6,6 @@ import android.graphics.Rect;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Gravity;
-import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -20,11 +19,6 @@ import com.pollyfat.squarega.view.DotsCanvas;
 
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.Extra;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Created by polly on 2016/3/18.
@@ -40,9 +34,9 @@ public class StartActivity extends Activity {
     @Extra
     int level;//难度
     @Extra
-    public Player player1;
+    Player playerOne;
     @Extra
-    public Player player2;
+    Player playerTwo;
 
     DotsCanvas root;
     DotView[][] dotViews;
@@ -54,7 +48,7 @@ public class StartActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
         root = (DotsCanvas) findViewById(R.id.dots);
-        dotModel = new DotModel(player1, player2, root, this);
+        dotModel = new DotModel(playerOne, playerTwo, root, this);
         dotViews = new DotView[level][level];
         squares = new Square[level - 1][level - 1];
         initGameView();
@@ -120,8 +114,8 @@ public class StartActivity extends Activity {
                                     Square square = new Square();
                                     square.setmX(j);
                                     square.setmY(i);
-                                    square.setCoordX((dotViews[i][j + 1].getCoordX() - dotViews[i][j].getCoordX()) / 2 + dotViews[i][j].getCoordX());
-                                    square.setCoordY((dotViews[i + 1][j].getCoordY() - dotViews[i][j].getCoordY()) / 2 + dotViews[i][j].getCoordY());
+                                    square.setCoordY((dotViews[i][j + 1].getCoordX() - dotViews[i][j].getCoordX()) / 2 + dotViews[i][j].getCoordX());
+                                    square.setCoordX((dotViews[i + 1][j].getCoordY() - dotViews[i][j].getCoordY()) / 2 + dotViews[i][j].getCoordY());
                                     squares[j][i] = square;
                                 }
                             }

@@ -19,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -54,9 +55,10 @@ public class ChoosePlayersActivity extends Activity {
     Button pTwo;
     @ViewById(R.id.choose_player_list)
     RelativeLayout listRoot;
-    PlayerTableAdapter selectAdapter;
     @ViewById(R.id.add_player)
     ImageView operateBtn;
+
+    PlayerTableAdapter selectAdapter;
 
     PopupWindow addPlay;
     View popupView;
@@ -68,6 +70,7 @@ public class ChoosePlayersActivity extends Activity {
     SharedPreferences.Editor editor;
     int selectPosition1 = -1, selectPosition2 = -1, createPosition = -1;
     boolean isFirstPlayer = true;
+    int popupState = -1;
 
     private View popView;
 
@@ -97,23 +100,23 @@ public class ChoosePlayersActivity extends Activity {
                     playerOne = players.get(position);
                     //点击其他玩家时将刚才选择的玩家的标识设为隐藏
                     if (selectPosition1 != -1)
-                        createGrid.getChildAt(selectPosition1).findViewById(R.id.avatar_medal).setVisibility(View.INVISIBLE);
+                        selectGrid.getChildAt(selectPosition1).findViewById(R.id.avatar_medal).setVisibility(View.GONE);
                     View playerItem = selectGrid.getChildAt(position);
                     playerItem.findViewById(R.id.avatar_medal).setVisibility(View.VISIBLE);
                     selectAdapter.notifyDataSetChanged();
                     selectPosition1 = position;
                 } else {
-                    //TODO 徽章显示问题
                     playerTwo = players.get(position);
                     //点击其他玩家时将刚才选择的玩家的标识设为隐藏
                     if (selectPosition2 != -1)
-                        createGrid.getChildAt(selectPosition2).findViewById(R.id.avatar_medal).setVisibility(View.INVISIBLE);
+                        selectGrid.getChildAt(selectPosition2).findViewById(R.id.avatar_medal).setVisibility(View.INVISIBLE);
                     View playerItem = selectGrid.getChildAt(position);
                     playerItem.findViewById(R.id.avatar_medal).setVisibility(View.VISIBLE);
                     selectAdapter.notifyDataSetChanged();
                     selectPosition2 = position;
                 }
                 if (playerOne != null & playerTwo != null) {
+                    popupState = 2;
                     operateBtn.setImageResource(R.drawable.play_btn_anim);
                     AnimationDrawable anim = (AnimationDrawable) operateBtn.getDrawable();
                     anim.start();
@@ -132,8 +135,6 @@ public class ChoosePlayersActivity extends Activity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             addPlay.setElevation(2);
         }
-
-
     }
 
     private void initPlayersList() {
@@ -150,13 +151,21 @@ public class ChoosePlayersActivity extends Activity {
 
     @Click(R.id.add_player)
     public void addPlayer() {
-        //显示或者隐藏pop布局
-        if (popView == null) {
-            //初始化添加玩家时的弹出框
-            initPopupView();
-            operateBtn.setImageResource(R.drawable.ok);
-        } else {
-            if (popView.getVisibility() == View.VISIBLE) {
+        switch (popupState) {
+            case 0:
+                //未弹出添加框
+                if (popView == null) {
+                    //初始化添加玩家时的弹出框
+                    initPopupView();
+                    operateBtn.setImageResource(R.drawable.ok);
+                } else {
+                    popView.setVisibility(View.VISIBLE);
+                    operateBtn.setImageResource(R.drawable.ok);
+                }
+                popupState = 1;
+                break;
+            case 1:
+                //已弹出添加框
                 if (createPosition == -1) {
                     Toast.makeText(ChoosePlayersActivity.this, "请选择一个头像~", Toast.LENGTH_SHORT).show();
                 } else if (("").equals(name.getText().toString())) {
@@ -178,55 +187,68 @@ public class ChoosePlayersActivity extends Activity {
                     editor.putString(spFileName, new Gson().toJson(players));
                     editor.apply();
                 }
-            } else {
-                if (playerOne != null && playerTwo != null) {
-                    Intent intent = new Intent(this, ChooseLevelActivity_.class);
-                    Bundle bundle = new Bundle();
-                    bundle.putSerializable("playerOne", playerOne);
-                    bundle.putSerializable("playerTwo", playerTwo);
-                    intent.putExtras(bundle);
-                    startActivity(intent);
-                } else {
-                    popView.setVisibility(View.VISIBLE);
-                    operateBtn.setImageResource(R.drawable.ok);
-                }
-            }
+                popupState = 0;
+                break;
+            case 2:
+                //已选择完毕，准备开始游戏
+                Intent intent = new Intent(this, ChooseLevelActivity_.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("playerOne", playerOne);
+                bundle.putSerializable("playerTwo", playerTwo);
+                intent.putExtras(bundle);
+                startActivity(intent);
+                break;
         }
     }
 
     @Click(R.id.btn_player_one)
     public void selectPlayerOne() {
+        isFirstPlayer = true;
         findViewById(R.id.btn_player_one).setBackgroundResource(R.drawable.player_one);
+        findViewById(R.id.btn_player_one).setClickable(false);
         findViewById(R.id.btn_player_two).setBackgroundResource(R.drawable.player_two_shadow);
+        findViewById(R.id.btn_player_two).setClickable(true);
+        if (playerTwo != null) {
+            setMedalInvisible();
+            players.remove(playerTwo);
+            selectAdapter.notifyDataSetChanged();
+        }
         if (players.get(0).equals(playerCom)) {
             players.remove(playerCom);
-        }
-        isFirstPlayer = true;
-        if (playerTwo != null) {
-            players.remove(playerTwo);
+            selectAdapter.notifyDataSetChanged();
         }
         if (playerOne != null) {
-            players.add(selectPosition1,playerOne);
+            selectPosition1 = selectPosition1 >= players.size() ? players.size() : selectPosition1;
+            players.add(selectPosition1, playerOne);
+            selectGrid.getChildAt(selectPosition1).findViewById(R.id.avatar_medal).setVisibility(View.VISIBLE);
+            selectAdapter.notifyDataSetChanged();
         }
-        selectAdapter.notifyDataSetChanged();
         listRoot.setBackgroundColor(ContextCompat.getColor(this, R.color.player_one));
     }
 
     @Click(R.id.btn_player_two)
     public void selectPlayerTwo() {
         findViewById(R.id.btn_player_one).setBackgroundResource(R.drawable.player_one_shadow);
+        findViewById(R.id.btn_player_one).setClickable(true);
         findViewById(R.id.btn_player_two).setBackgroundResource(R.drawable.player_two);
+        findViewById(R.id.btn_player_two).setClickable(false);
+        if (playerOne != null) {
+            setMedalInvisible();
+            players.remove(playerOne);
+            selectAdapter.notifyDataSetChanged();
+        }
         if (players.size() == 0 || !players.get(0).equals(playerCom)) {
             players.add(0, playerCom);
-        }
-        if (playerOne != null) {
-            players.remove(playerOne);
+            selectAdapter.notifyDataSetChanged();
         }
         if (playerTwo != null) {
-            players.add(selectPosition2,playerTwo);
+            selectPosition2 = selectPosition2 >= players.size() ? players.size() : selectPosition2;
+            players.add(selectPosition2, playerTwo);
+            selectAdapter.notifyDataSetChanged();
+            View v = selectGrid.getChildAt(selectPosition2);
+//            v.findViewById(R.id.avatar_medal).setVisibility(View.VISIBLE);
         }
         isFirstPlayer = false;
-        selectAdapter.notifyDataSetChanged();
         listRoot.setBackgroundColor(ContextCompat.getColor(this, R.color.player_two));
     }
 
@@ -237,6 +259,7 @@ public class ChoosePlayersActivity extends Activity {
     public void onBackPressed() {
         if (popView.getVisibility() == View.VISIBLE) {
             popView.setVisibility(View.GONE);
+            operateBtn.setImageResource(R.drawable.add);
         } else {
             super.onBackPressed();
         }
@@ -264,5 +287,11 @@ public class ChoosePlayersActivity extends Activity {
                 createPosition = position;
             }
         });
+    }
+
+    void setMedalInvisible() {
+        for (int i = 0; i < selectGrid.getCount(); i++) {
+            selectGrid.getChildAt(i).findViewById(R.id.avatar_medal).setVisibility(View.INVISIBLE);
+        }
     }
 }

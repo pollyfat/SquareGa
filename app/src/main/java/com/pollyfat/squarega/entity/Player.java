@@ -11,6 +11,8 @@ public class Player implements Serializable{
     private int winCount;//获胜局数
     private int winSquare;//获得的方块数
     private String avatar;
+    private boolean isFirstSelected = false;
+    private boolean isSeconSelected = false;
 
     public Player(String avatar) {
         this.avatar = avatar;
@@ -19,6 +21,22 @@ public class Player implements Serializable{
     public Player(String name, String avatar) {
         this.name = name;
         this.avatar = avatar;
+    }
+
+    public boolean isFirstSelected() {
+        return isFirstSelected;
+    }
+
+    public void setFirstSelected(boolean firstSelected) {
+        isFirstSelected = firstSelected;
+    }
+
+    public boolean isSeconSelected() {
+        return isSeconSelected;
+    }
+
+    public void setSeconSelected(boolean seconSelected) {
+        isSeconSelected = seconSelected;
     }
 
     public String getName() {

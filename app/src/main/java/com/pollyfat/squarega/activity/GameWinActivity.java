@@ -1,11 +1,15 @@
 package com.pollyfat.squarega.activity;
 
+import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.pollyfat.squarega.R;
 
-public class GameWinActivity extends AppCompatActivity {
+import org.androidannotations.annotations.EActivity;
+
+@EActivity
+public class GameWinActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

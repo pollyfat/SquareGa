@@ -6,7 +6,8 @@ import com.pollyfat.squarega.util.SoundUtil;
 
 
 /**
- * Created by android on 2016/5/26.
+ * Created by polly on 2016/5/26.
+ *
  */
 public class GameApplication extends Application {
 

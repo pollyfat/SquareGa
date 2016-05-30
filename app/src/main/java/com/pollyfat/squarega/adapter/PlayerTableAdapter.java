@@ -65,13 +65,15 @@ public class PlayerTableAdapter extends BaseAdapter {
                 //选择已存在的玩家
                 viewHolder.name.setText(players.get(position).getName());
                 viewHolder.avatar.setImageResource(Util.getDrawableResourceByName(players.get(position).getAvatar(), context));
+//                if (players.get(position).isFirstSelected()||players.get(position).isSeconSelected()) {
+//                    viewHolder.metal.setVisibility(View.VISIBLE);
+//                }
             }
         } else {
             //创建玩家
             viewHolder.nameSpace.setVisibility(View.GONE);
             viewHolder.avatar.setImageResource(Util.getDrawableResourceByName(players.get(position).getAvatar(), context));
         }
-
         return convertView;
     }
 

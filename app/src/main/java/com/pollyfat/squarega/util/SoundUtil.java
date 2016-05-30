@@ -127,12 +127,12 @@ public class SoundUtil {
 
     public static void musicToggle(){
         if(musicSt) {
-            music.stop();
             musicSt = false;
+            music.pause();
         }
         else {
-            music.start();
             musicSt = true;
+            music.start();
         }
     }
 

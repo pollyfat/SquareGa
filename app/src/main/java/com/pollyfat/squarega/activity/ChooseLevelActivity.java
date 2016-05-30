@@ -9,6 +9,7 @@ import android.widget.Toast;
 import com.pollyfat.squarega.R;
 import com.pollyfat.squarega.entity.Player;
 
+import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.Extra;

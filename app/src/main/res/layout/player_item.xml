@@ -19,6 +19,7 @@
         android:layout_marginTop="45dp">
 
         <ImageView
+            android:id="@+id/ribbon"
             android:layout_width="@dimen/player_avatar_size"
             android:layout_height="@dimen/ribbon_height"
             android:src="@drawable/ribbon"/>

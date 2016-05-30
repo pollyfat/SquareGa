@@ -35,6 +35,8 @@
     <string name="weibosdk_demo_share_voice_template">我分享了 %1$s（分享自 WeiboSDKDemo %2$s）</string>
     <string name="choose_level">选择难度</string>
     <string name="vs">vs</string>
+    <string name="win">你赢啦！</string>
+    <string name="lose">你失败了！</string>
     <string name="game_rule">游戏规则</string>
     <string name="rules_one">1.游戏可以选择两个模式，人机对战或者本地双人游戏。</string>
     <string name="rules_two">2.两个玩家轮流连接画布中的两个点，只可以连接上下左右四个方向的点，不可斜向连接或跨点连接。</string>
