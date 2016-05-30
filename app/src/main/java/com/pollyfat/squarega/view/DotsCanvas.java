@@ -19,7 +19,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by android on 2016/5/17.
+ * Created by polly on 2016/5/17.
+ *
  */
 public class DotsCanvas extends LinearLayout {
 
@@ -73,6 +74,7 @@ public class DotsCanvas extends LinearLayout {
         Paint paint = new Paint();
         paint.setAntiAlias(true);
         paint.setColor(Color.RED);
+        paint.setStrokeWidth(5);
         for (PointPair p :
                 pointPairs) {
             canvas.drawLine(p.getStartX(), p.getStartY(), p.getStopX(), p.getStopY(), paint);
@@ -114,22 +116,6 @@ public class DotsCanvas extends LinearLayout {
             this.coordX = coordX;
             this.coordY = coordY;
             this.player = player;
-        }
-
-        public float getCoordX() {
-            return coordX;
-        }
-
-        public void setCoordX(float coordX) {
-            this.coordX = coordX;
-        }
-
-        public float getCoordY() {
-            return coordY;
-        }
-
-        public void setCoordY(float coordY) {
-            this.coordY = coordY;
         }
     }
 }

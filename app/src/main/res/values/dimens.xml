@@ -23,8 +23,8 @@
     <dimen name="choose_player_btn_padding">40dp</dimen>
     <dimen name="player_avatar_size">65dp</dimen>
     <dimen name="ribbon_height">25dp</dimen>
-    <dimen name="medal_width">25dp</dimen>
-    <dimen name="medal_height">35dp</dimen>
+    <dimen name="medal_width">20dp</dimen>
+    <dimen name="medal_height">30dp</dimen>
     <dimen name="edit_text_padding">12dp</dimen>
     <dimen name="level_btn_size">120dp</dimen>
 </resources>

@@ -114,8 +114,8 @@ public class StartActivity extends Activity {
                                     Square square = new Square();
                                     square.setmX(j);
                                     square.setmY(i);
-                                    square.setCoordY((dotViews[i][j + 1].getCoordX() - dotViews[i][j].getCoordX()) / 2 + dotViews[i][j].getCoordX());
-                                    square.setCoordX((dotViews[i + 1][j].getCoordY() - dotViews[i][j].getCoordY()) / 2 + dotViews[i][j].getCoordY());
+                                    square.setCoordY(dotViews[i][j].getCoordX());
+                                    square.setCoordX(dotViews[i][j].getCoordY());
                                     squares[j][i] = square;
                                 }
                             }

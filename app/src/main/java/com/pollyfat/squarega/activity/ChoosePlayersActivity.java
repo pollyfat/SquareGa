@@ -74,7 +74,6 @@ public class ChoosePlayersActivity extends Activity {
 
     private View popView;
 
-
     @ViewById(R.id.pop_viewstub)
     ViewStub popViewStub;
 
@@ -246,7 +245,7 @@ public class ChoosePlayersActivity extends Activity {
             players.add(selectPosition2, playerTwo);
             selectAdapter.notifyDataSetChanged();
             View v = selectGrid.getChildAt(selectPosition2);
-//            v.findViewById(R.id.avatar_medal).setVisibility(View.VISIBLE);
+            v.findViewById(R.id.avatar_medal).setVisibility(View.VISIBLE);
         }
         isFirstPlayer = false;
         listRoot.setBackgroundColor(ContextCompat.getColor(this, R.color.player_two));
