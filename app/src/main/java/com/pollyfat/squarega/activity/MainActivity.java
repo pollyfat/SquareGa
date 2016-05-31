@@ -32,9 +32,4 @@ public class MainActivity extends Activity {
         startActivity(intent);
     }
 
-    @Override
-    protected void onPause() {
-        //程序被打断时执行
-        super.onPause();
-    }
 }

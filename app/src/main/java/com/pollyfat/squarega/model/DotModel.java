@@ -2,12 +2,11 @@ package com.pollyfat.squarega.model;
 
 import android.content.Context;
 import android.view.View;
-import android.view.ViewAnimationUtils;
 import android.view.animation.Animation;
-import android.view.animation.AnimationSet;
 import android.view.animation.AnimationUtils;
 
 import com.pollyfat.squarega.R;
+import com.pollyfat.squarega.activity.StartActivity;
 import com.pollyfat.squarega.entity.Player;
 import com.pollyfat.squarega.entity.Square;
 import com.pollyfat.squarega.view.DotView;
@@ -17,17 +16,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by bugre on 2016/5/11.
+ * Created by polly on 2016/5/11.
+ * 游戏逻辑模型
  */
 public class DotModel implements View.OnClickListener {
 
     static DotView dotStart;
     Context context;
-    static List<DotView> connDots = new ArrayList<>();
-    Player player1, player2;
     static Player playerNow;
-    static int level;
     DotsCanvas dotsCanvas;
+    List<DotView> connDots = new ArrayList<>();
+    DotView[][] dots = StartActivity.dotViews;
 
     @Override
     public void onClick(View v) {
@@ -41,10 +40,10 @@ public class DotModel implements View.OnClickListener {
             changeDotStateToFalse();
             if (!findCompleteSquare(dotStart, playerNow)) {
                 //如果未完成方块，则交换焦点玩家
-                if (playerNow == player1) {
-                    playerNow = player2;
+                if (playerNow == StartActivity.playerOne) {
+                    playerNow = StartActivity.playerTwo;
                 } else {
-                    playerNow = player1;
+                    playerNow = StartActivity.playerOne;
                 }
             }
 //            isGameEnd();
@@ -64,7 +63,7 @@ public class DotModel implements View.OnClickListener {
         if (!connDots.isEmpty()) {
             changeDotStateToFalse();
         }
-        connDots = d.findConnDots();
+        initConnDots(d);
         Animation anim1 = AnimationUtils.loadAnimation(context, R.anim.dot_selected_anim_swell);
         anim1.setDuration(1000);
         for (final DotView dot :
@@ -72,6 +71,25 @@ public class DotModel implements View.OnClickListener {
             dot.setmClickable(true);
             dot.setImageResource(R.drawable.dot);
             dot.startAnimation(anim1);
+        }
+    }
+
+    private void initConnDots(DotView d) {
+        if (!d.isUp()) {
+            //上面的点未连接
+            connDots.add(dots[d.getmY()-1][d.getmX()]);
+        }
+        if (!d.isDown()) {
+            //上面的点未连接
+            connDots.add(dots[d.getmY()+1][d.getmX()]);
+        }
+        if (!d.isLeft()) {
+            //上面的点未连接
+            connDots.add(dots[d.getmY()][d.getmX()-1]);
+        }
+        if (!d.isRight()) {
+            //上面的点未连接
+            connDots.add(dots[d.getmY()][d.getmX()+1]);
         }
     }
 
@@ -155,13 +173,9 @@ public class DotModel implements View.OnClickListener {
     /**
      * 构造函数
      *
-     * @param player1
-     * @param player2
      * @param dotsCanvas dotView的父容器，执行画线操作
      */
-    public DotModel(Player player1, Player player2, DotsCanvas dotsCanvas, Context context) {
-        this.player1 = player1;
-        this.player2 = player2;
+    public DotModel(DotsCanvas dotsCanvas, Context context) {
         this.dotsCanvas = dotsCanvas;
         this.context = context;
     }

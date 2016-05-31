@@ -17,6 +17,7 @@ import java.util.List;
 
 /**
  * Created by polly on 2016/5/19.
+ * 玩家列表和添加玩家的GridView适配器
  */
 public class PlayerTableAdapter extends BaseAdapter {
     public static final int SELECT_LIST = 0, CREATE_LIST = 1;
@@ -28,6 +29,31 @@ public class PlayerTableAdapter extends BaseAdapter {
         this.context = context;
         this.players = players;
         this.tag = tag;
+    }
+
+
+    public enum PlayerEnum {
+        ONE,
+        TWO
+    }
+
+
+    private PlayerEnum curPlayer = PlayerEnum.ONE;
+
+    private int selectedOne = -1, selectedTwo = -1;
+
+    public void setCurPlayer(PlayerEnum player) {
+        curPlayer = player;
+    }
+
+    public void selectItem(PlayerEnum player, int pos) {
+        if (player == PlayerEnum.ONE) {
+            this.selectedOne = pos;
+        } else {
+            this.selectedTwo = pos;
+        }
+        this.curPlayer = player;
+        notifyDataSetChanged();
     }
 
     @Override
@@ -61,13 +87,22 @@ public class PlayerTableAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
         if (tag == SELECT_LIST) {
-            if (players.get(0) != null) {
-                //选择已存在的玩家
-                viewHolder.name.setText(players.get(position).getName());
-                viewHolder.avatar.setImageResource(Util.getDrawableResourceByName(players.get(position).getAvatar(), context));
-//                if (players.get(position).isFirstSelected()||players.get(position).isSeconSelected()) {
-//                    viewHolder.metal.setVisibility(View.VISIBLE);
-//                }
+            //选择已存在的玩家
+            viewHolder.name.setText(players.get(position).getName());
+            viewHolder.avatar.setImageResource(Util.getDrawableResourceByName(players.get(position).getAvatar(), context));
+
+            if (curPlayer == PlayerEnum.ONE) {
+                if (position == selectedOne) {
+                    viewHolder.metal.setVisibility(View.VISIBLE);
+                } else {
+                    viewHolder.metal.setVisibility(View.GONE);
+                }
+            } else {
+                if (position == selectedTwo) {
+                    viewHolder.metal.setVisibility(View.VISIBLE);
+                } else {
+                    viewHolder.metal.setVisibility(View.GONE);
+                }
             }
         } else {
             //创建玩家

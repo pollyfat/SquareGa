@@ -16,7 +16,7 @@ import org.androidannotations.annotations.Extra;
 
 /**
  * 选择对手和关卡
- * Created by bugre on 2016/3/20.
+ * Created by polly on 2016/3/20.
  */
 @EActivity(R.layout.activity_choose_level)
 public class ChooseLevelActivity extends Activity {

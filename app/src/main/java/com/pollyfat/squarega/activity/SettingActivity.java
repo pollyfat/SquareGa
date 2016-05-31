@@ -1,5 +1,6 @@
 package com.pollyfat.squarega.activity;
 
+import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -17,7 +18,7 @@ import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
 
 @EActivity(R.layout.activity_setting)
-public class SettingActivity extends AppCompatActivity {
+public class SettingActivity extends Activity {
 
     @ViewById(R.id.setting_music)
     ImageButton music;

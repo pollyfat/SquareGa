@@ -1,26 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.pollyfat.squarega">
+          package="com.pollyfat.squarega">
 
     <application
+        android:name=".GameApplication_"
         android:allowBackup="true"
-        android:name=".GameApplication"
         android:icon="@mipmap/icon"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".activity.MainActivity_">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".activity.StartActivity_" />
-        <activity android:name=".activity.ChooseLevelActivity_" />
-        <activity android:name=".activity.RankingListActivity_" />
-        <activity android:name=".activity.GameWinActivity_" />
-        <activity android:name=".activity.SettingActivity_" />
+        <activity android:name=".activity.StartActivity_"/>
+        <activity android:name=".activity.ChooseLevelActivity_"/>
+        <activity android:name=".activity.RankingListActivity_"/>
+        <activity
+            android:name=".activity.GameWinDialog_"
+            android:theme="@android:style/Theme.Dialog"/>
+        <activity android:name=".activity.SettingActivity_"/>
         <activity
             android:name=".activity.ChoosePlayersActivity_"
             android:windowSoftInputMode="adjustPan"/>

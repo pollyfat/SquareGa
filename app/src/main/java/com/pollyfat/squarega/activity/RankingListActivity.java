@@ -37,6 +37,7 @@ public class RankingListActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        sharedPreferences = getSharedPreferences(RANKING_LIST, MODE_PRIVATE);
         initList();
     }
 

@@ -7,70 +7,104 @@
     android:orientation="vertical">
 
     <RelativeLayout
-        android:id="@+id/start_surplus"
+        android:id="@+id/head_zone"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/game_bar_height"
-        android:background="@color/game_bar">
-        <TextView
-            android:id="@+id/start_back"
-            android:onClick="onClick"
+        android:background="@color/player_two"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/player_zone_padding">
+
+        <ImageButton
+            android:id="@+id/back"
+            android:layout_width="@dimen/back_btn_size"
+            android:layout_height="@dimen/back_btn_size"
+            android:layout_centerVertical="true"
+            android:background="@drawable/back"/>
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/return_to_main"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:textSize="@dimen/start_text_size"
-            android:textColor="@color/text_color"/>
-        <TextView
-            android:id="@+id/start_rival"
-            android:layout_width="wrap_content"
-            android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
-            android:text="@string/rival"
-            android:textSize="@dimen/start_text_size"
-            android:textColor="@color/text_color"
-            android:layout_height="wrap_content"/>
-        <TextView
-            android:id="@+id/start_again"
-            android:onClick="onClick"
-            android:layout_width="wrap_content"
-            android:text="@string/refresh"
-            android:textSize="@dimen/start_text_size"
-            android:textColor="@color/text_color"
             android:layout_centerVertical="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:layout_height="wrap_content"/>
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/game_player_one"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="@string/choose_player_one"/>
+
+            <TextView
+                android:id="@+id/time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="60"/>
+        </LinearLayout>
+
+
+        <ImageView
+            android:id="@+id/player_one_avatar"
+            android:layout_width="@dimen/player_avatar_size"
+            android:layout_height="@dimen/player_avatar_size"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/avatar0"/>
     </RelativeLayout>
 
     <com.pollyfat.squarega.view.DotsCanvas
         android:id="@+id/dots"
         android:layout_width="match_parent"
-        android:layout_height="400dp"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/foot_zone"
+        android:layout_below="@id/head_zone"
         android:layout_centerVertical="true"
         android:orientation="vertical"/>
 
-    <LinearLayout
+    <RelativeLayout
+        android:id="@+id/foot_zone"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/game_bar_height"
+        android:layout_height="wrap_content"
+        android:background="@color/player_two"
         android:layout_alignParentBottom="true"
-        android:gravity="center_horizontal"
-        android:orientation="vertical"
-        android:background="@color/game_bar">
-        <TextView
-            android:text="3-0"
-            android:id="@+id/score_start"
-            android:layout_margin="6dp"
-            android:textSize="15sp"
+        android:padding="@dimen/player_zone_padding">
+
+
+        <ImageView
+            android:id="@+id/player_two_avatar"
+            android:layout_width="@dimen/player_avatar_size"
+            android:layout_height="@dimen/player_avatar_size"
+            android:layout_centerVertical="true"
+            android:src="@drawable/avatar0"/>
+
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:textColor="@color/start_score"
-            android:layout_height="wrap_content"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:id="@+id/player_name_start"
-            android:textSize="@dimen/start_text_size"
-            android:text="playerName"
-            android:textColor="@color/text_color"
-            android:layout_height="wrap_content"/>
-    </LinearLayout>
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/game_player_two"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="@string/choose_player_two"/>
+
+            <TextView
+                android:id="@+id/game_score"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="3-0"/>
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/begin_again"
+            android:layout_width="@dimen/back_btn_size"
+            android:layout_height="@dimen/back_btn_size"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/start_again"/>
+    </RelativeLayout>
 </RelativeLayout>

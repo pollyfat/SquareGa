@@ -7,16 +7,21 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.ViewTreeObserver;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.pollyfat.squarega.R;
 import com.pollyfat.squarega.entity.Player;
 import com.pollyfat.squarega.entity.Square;
 import com.pollyfat.squarega.model.DotModel;
+import com.pollyfat.squarega.util.SoundUtil;
+import com.pollyfat.squarega.util.Util;
 import com.pollyfat.squarega.view.DotView;
 import com.pollyfat.squarega.view.DotsCanvas;
 
+import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.Extra;
 
@@ -34,32 +39,42 @@ public class StartActivity extends Activity {
     @Extra
     int level;//难度
     @Extra
-    Player playerOne;
+    public static Player playerOne;
     @Extra
-    Player playerTwo;
+    public static Player playerTwo;
 
     DotsCanvas root;
-    DotView[][] dotViews;
+    public static DotView[][] dotViews;
     Square[][] squares;
     DotModel dotModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SoundUtil.init(this);
+        SoundUtil.startMusic();
         setContentView(R.layout.activity_game);
         root = (DotsCanvas) findViewById(R.id.dots);
-        dotModel = new DotModel(playerOne, playerTwo, root, this);
+        dotModel = new DotModel(root, StartActivity.this);
         dotViews = new DotView[level][level];
         squares = new Square[level - 1][level - 1];
+        initView();
         initGameView();
         setSurplus();
+    }
+
+    private void initView() {
+        ((ImageView)findViewById(R.id.player_one_avatar)).setImageResource(Util.getDrawableResourceByName(playerOne.getAvatar(),this));
+        ((ImageView)findViewById(R.id.player_two_avatar)).setImageResource(Util.getDrawableResourceByName(playerTwo.getAvatar(),this));
+        ((TextView)findViewById(R.id.game_player_one)).setText(playerOne.getName());
+        ((TextView)findViewById(R.id.game_player_two)).setText(playerTwo.getName());
     }
 
     /**
      * onDraw时获取的坐标包含状态栏和顶部Layout，获取这部分偏差值以矫正坐标
      */
     private void setSurplus() {
-        final RelativeLayout surplus = (RelativeLayout) findViewById(R.id.start_surplus);
+        final RelativeLayout surplus = (RelativeLayout) findViewById(R.id.head_zone);
         ViewTreeObserver vto = surplus.getViewTreeObserver();
         vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
@@ -164,5 +179,15 @@ public class StartActivity extends Activity {
                 }
             }
         }
+    }
+
+    @Click(R.id.back)
+    void back(){
+        this.finish();
+    }
+
+    @Click(R.id.begin_again)
+    void beginAgain(){
+
     }
 }
