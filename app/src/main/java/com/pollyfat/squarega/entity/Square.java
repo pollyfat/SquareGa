@@ -1,12 +1,7 @@
 package com.pollyfat.squarega.entity;
 
-import com.pollyfat.squarega.view.DotView;
-
-import java.util.ArrayList;
-import java.util.List;
-
 /**
- * Created by bugre on 2016/5/8.
+ * Created by polly on 2016/5/8.
  * 方块对象
  */
 public class Square {

@@ -1,11 +1,13 @@
 package com.pollyfat.squarega.model;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
 import com.pollyfat.squarega.R;
+import com.pollyfat.squarega.activity.GameWinDialog_;
 import com.pollyfat.squarega.activity.StartActivity;
 import com.pollyfat.squarega.entity.Player;
 import com.pollyfat.squarega.entity.Square;
@@ -19,14 +21,16 @@ import java.util.List;
  * Created by polly on 2016/5/11.
  * 游戏逻辑模型
  */
+
 public class DotModel implements View.OnClickListener {
 
     static DotView dotStart;
     Context context;
     static Player playerNow;
+    int level;
     DotsCanvas dotsCanvas;
     List<DotView> connDots = new ArrayList<>();
-    DotView[][] dots = StartActivity.dotViews;
+    DotView[][] dots ;
 
     @Override
     public void onClick(View v) {
@@ -46,7 +50,7 @@ public class DotModel implements View.OnClickListener {
                     playerNow = StartActivity.playerOne;
                 }
             }
-//            isGameEnd();
+            isGameEnd();
         } else {
             changeDotStateToTrue(d);
         }
@@ -163,6 +167,7 @@ public class DotModel implements View.OnClickListener {
                     dotsCanvas.addPoint(s.getCoordX(), s.getCoordY(), player);
                     dotsCanvas.invalidate();
                     s.setOwner(player);
+                    player.setWinCount(player.getWinCount()+1);
                     return true;
                 }
             }
@@ -172,17 +177,18 @@ public class DotModel implements View.OnClickListener {
 
     /**
      * 构造函数
-     *
      * @param dotsCanvas dotView的父容器，执行画线操作
      */
     public DotModel(DotsCanvas dotsCanvas, Context context) {
         this.dotsCanvas = dotsCanvas;
         this.context = context;
+        this.level = StartActivity.level;
     }
 
-//        if (player1.getWinSquare() > level * level / 2) {
-//        }
-//        if (player2.getWinSquare() > level * level / 2) {
-//        }
-
+    public void isGameEnd() {
+        if (StartActivity.playerOne.getWinSquare() > level * level / 2||StartActivity.playerTwo.getWinSquare() > level * level / 2) {
+            Intent intent = new Intent(context, GameWinDialog_.class);
+            context.startActivity(intent);
+        }
+    }
 }

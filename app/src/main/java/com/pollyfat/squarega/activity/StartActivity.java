@@ -37,7 +37,7 @@ public class StartActivity extends Activity {
     @Extra
     String rival;//对手（电脑/人）
     @Extra
-    int level;//难度
+    public static int level;//难度
     @Extra
     public static Player playerOne;
     @Extra
