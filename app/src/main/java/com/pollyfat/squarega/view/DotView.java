@@ -29,8 +29,14 @@ public class DotView extends ImageView {
     int mX;
     int mY;
     boolean mClickable = false;
-    boolean mSelected = false;
     float coordX, coordY;
+
+    public void resetConn(){
+        this.right = false;
+        this.left = false;
+        this.down = false;
+        this.up = false;
+    }
 
     public boolean isRight() {
         return right;
@@ -116,14 +122,6 @@ public class DotView extends ImageView {
         super(context);
     }
 
-    public boolean ismSelected() {
-        return mSelected;
-    }
-
-    public void setmSelected(boolean mSelected) {
-        this.mSelected = mSelected;
-    }
-
     public boolean ismClickable() {
         return mClickable;
     }
@@ -149,42 +147,5 @@ public class DotView extends ImageView {
         this.mX = mX;
     }
 
-//    /**
-//     * 找到上下左右的点，并设置为可点击
-//     */
-//    public List<DotView> findConnDots() {
-//        List<DotView> connDots = new ArrayList();
-//        int dotCount = dots.size();
-//        //设置上下左右可点击
-//        for (int i = 0; i < dotCount; i++) {
-//            int row, column;
-//            DotView d = dots.get(i);
-//            row = d.getmX();
-//            column = d.getmY();
-//
-//
-//
-//            if (row == this.getmX()) {
-//                if (column == this.getmY() + 1 || column == this.getmY() - 1) {
-//                    connDots.add(d);
-//                }
-//            }
-//            if (column == this.getmY()) {
-//                if (row == this.getmX() + 1 || row == this.getmX() - 1) {
-//                    connDots.add(d);
-//                }
-//            }
-//        }
-//        return connDots;
-//    }
-
-    public Map<Integer, Square> getSquares() {
-        Map<Integer, Square> squares = new HashMap<>();
-        squares.put(1, getOne());
-        squares.put(2, getTwo());
-        squares.put(3, getThree());
-        squares.put(4, getFour());
-        return squares;
-    }
 
 }

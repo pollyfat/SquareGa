@@ -16,8 +16,7 @@ public class FontManager {
     public static void changeFonts(ViewGroup root, Activity act) {
 
         Typeface tf = Typeface.createFromAsset(act.getAssets(),
-                "fonts/xxx.ttf");
-
+                "fonts/font_simple.ttf");
         for (int i = 0; i < root.getChildCount(); i++) {
             View v = root.getChildAt(i);
             if (v instanceof TextView) {
@@ -30,6 +29,5 @@ public class FontManager {
                 changeFonts((ViewGroup) v, act);
             }
         }
-
     }
 }

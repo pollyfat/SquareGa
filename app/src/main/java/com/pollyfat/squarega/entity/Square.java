@@ -13,6 +13,13 @@ public class Square {
     private float coordY;
     private boolean coordSet;
 
+    public void resetLine(){
+        this.top = false;
+        this.left = false;
+        this.bottom = false;
+        this.right = false;
+    }
+
     public boolean isCoordSet() {
         return coordSet;
     }

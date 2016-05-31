@@ -21,6 +21,7 @@ import java.util.List;
 /**
  * Created by polly on 2016/5/17.
  *
+ * 游戏棋盘，执行画线和画占领标识操作
  */
 public class DotsCanvas extends LinearLayout {
 
@@ -49,40 +50,46 @@ public class DotsCanvas extends LinearLayout {
         drawFlag(canvas);
     }
 
-    public void addPointPair(float startX, float startY, float stopX, float stopY) {
-        pointPairs.add(new PointPair(startX, startY, stopX, stopY));
+    public void addPointPair(Player player, float startX, float startY, float stopX, float stopY) {
+        pointPairs.add(new PointPair(player, startX, startY, stopX, stopY));
     }
 
-    public void addPoint(float coordX, float coordY,Player player) {
-        points.add(new Point(coordX,coordY,player));
+    public void addPoint(float coordX, float coordY, Player player) {
+        points.add(new Point(coordX, coordY, player));
     }
+
     public void drawFlag(Canvas canvas) {
         Resources res = getResources();
         Bitmap bitmap;
         for (Point p :
                 points) {
-//            if (p.player.equals(StartActivity.player1)) {
+            if (p.player.equals(StartActivity.playerOne)) {
                 bitmap = BitmapFactory.decodeResource(res, R.drawable.flag);
-//            } else{
-//                bitmap = BitmapFactory.decodeResource(res, R.drawable.two);
-//            }
-            canvas.drawBitmap(bitmap,p.coordX + bitmap.getWidth() / 2, p.coordY + bitmap.getHeight() / 2,new Paint());
+            } else {
+                bitmap = BitmapFactory.decodeResource(res, R.drawable.gold);
+            }
+            canvas.drawBitmap(bitmap, p.coordX + bitmap.getWidth() / 2, p.coordY + bitmap.getHeight() / 2, new Paint());
         }
     }
 
     public void drawLine(Canvas canvas) {
         Paint paint = new Paint();
         paint.setAntiAlias(true);
-        paint.setColor(Color.RED);
-        paint.setStrokeWidth(5);
         for (PointPair p :
                 pointPairs) {
+            if (p.getPlayer().equals(StartActivity.playerOne)) {
+                paint.setColor(Color.RED);
+            } else {
+                paint.setColor(Color.GREEN);
+            }
+            paint.setStrokeWidth(5);
             canvas.drawLine(p.getStartX(), p.getStartY(), p.getStopX(), p.getStopY(), paint);
         }
     }
 
     public class PointPair {
         float startX, startY, stopX, stopY;
+        Player player;
 
         public float getStartX() {
             return startX;
@@ -100,22 +107,33 @@ public class DotsCanvas extends LinearLayout {
             return stopY;
         }
 
-        public PointPair(float startX, float startY, float stopX, float stopY) {
+        public Player getPlayer() {
+            return player;
+        }
+
+        public PointPair(Player player, float startX, float startY, float stopX, float stopY) {
             this.startX = startX;
             this.startY = startY;
             this.stopX = stopX;
             this.stopY = stopY;
+            this.player = player;
         }
     }
 
-    public class Point{
+    public class Point {
         float coordX, coordY;
         Player player;
 
-        public Point(float coordX, float coordY,Player player) {
+        public Point(float coordX, float coordY, Player player) {
             this.coordX = coordX;
             this.coordY = coordY;
             this.player = player;
         }
+    }
+
+    public void clearLine() {
+        pointPairs.clear();
+        points.clear();
+        invalidate();
     }
 }

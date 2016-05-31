@@ -26,11 +26,10 @@ public class DotModel implements View.OnClickListener {
 
     static DotView dotStart;
     Context context;
-    static Player playerNow;
+    static Player playerNow = StartActivity.playerOne;
     int level;
     DotsCanvas dotsCanvas;
     List<DotView> connDots = new ArrayList<>();
-    DotView[][] dots ;
 
     @Override
     public void onClick(View v) {
@@ -38,7 +37,7 @@ public class DotModel implements View.OnClickListener {
         if (d.ismClickable()) {
             //如果为可点击状态，说明此点周围的点已被点击过，等待连接。
             //将连接点的坐标加入canvas的数组中，遍历数组绘图
-            dotsCanvas.addPointPair(dotStart.getCoordX(), dotStart.getCoordY(), d.getCoordX(), d.getCoordY());
+            dotsCanvas.addPointPair(playerNow,dotStart.getCoordX(), dotStart.getCoordY(), d.getCoordX(), d.getCoordY());
             dotsCanvas.invalidate();
             setSquareLine(d, dotStart);
             changeDotStateToFalse();
@@ -79,21 +78,38 @@ public class DotModel implements View.OnClickListener {
     }
 
     private void initConnDots(DotView d) {
+        connDots.clear();
         if (!d.isUp()) {
             //上面的点未连接
-            connDots.add(dots[d.getmY()-1][d.getmX()]);
+            try {
+                connDots.add(StartActivity.dotViews[d.getmX()][d.getmY()-1]);
+            } catch (ArrayIndexOutOfBoundsException e) {
+
+            }
         }
         if (!d.isDown()) {
             //上面的点未连接
-            connDots.add(dots[d.getmY()+1][d.getmX()]);
+            try {
+                connDots.add(StartActivity.dotViews[d.getmX()][d.getmY()+1]);
+            } catch (ArrayIndexOutOfBoundsException e) {
+
+            }
         }
         if (!d.isLeft()) {
             //上面的点未连接
-            connDots.add(dots[d.getmY()][d.getmX()-1]);
+            try {
+                connDots.add(StartActivity.dotViews[d.getmX()-1][d.getmY()]);
+            } catch (ArrayIndexOutOfBoundsException e) {
+
+            }
         }
         if (!d.isRight()) {
             //上面的点未连接
-            connDots.add(dots[d.getmY()][d.getmX()+1]);
+            try {
+                connDots.add(StartActivity.dotViews[d.getmX() + 1][d.getmY()]);
+            } catch (ArrayIndexOutOfBoundsException e) {
+
+            }
         }
     }
 
@@ -119,6 +135,7 @@ public class DotModel implements View.OnClickListener {
             if (y < 0) {
                 //与上面的点连接
                 d2.setUp(true);
+                d1.setDown(true);
                 if (d2.getOne() != null)
                     d2.getOne().setLeft(true);
                 if (d2.getFour() != null)
@@ -126,6 +143,7 @@ public class DotModel implements View.OnClickListener {
             } else {
                 //与下面的点连接
                 d2.setDown(true);
+                d1.setUp(true);
                 if (d2.getTwo() != null)
                     d2.getTwo().setLeft(true);
                 if (d2.getThree() != null)
@@ -134,6 +152,7 @@ public class DotModel implements View.OnClickListener {
         } else if (x < 0) {
             //与左边的点连接
             d2.setLeft(true);
+            d1.setRight(true);
             if (d2.getFour() != null)
                 d2.getFour().setBottom(true);
             if (d2.getThree() != null)
@@ -141,6 +160,7 @@ public class DotModel implements View.OnClickListener {
         } else {
             //与右边的点连接
             d2.setRight(true);
+            d1.setLeft(true);
             if (d2.getOne() != null)
                 d2.getOne().setBottom(true);
             if (d2.getTwo() != null)
