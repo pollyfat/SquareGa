@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.util.AttributeSet;
@@ -20,7 +21,7 @@ import java.util.List;
 
 /**
  * Created by polly on 2016/5/17.
- *
+ * <p/>
  * 游戏棋盘，执行画线和画占领标识操作
  */
 public class DotsCanvas extends LinearLayout {
@@ -64,11 +65,11 @@ public class DotsCanvas extends LinearLayout {
         for (Point p :
                 points) {
             if (p.player.equals(StartActivity.playerOne)) {
-                bitmap = BitmapFactory.decodeResource(res, R.drawable.flag);
+                bitmap = BitmapFactory.decodeResource(res, R.drawable.flag_player01);
             } else {
-                bitmap = BitmapFactory.decodeResource(res, R.drawable.gold);
+                bitmap = BitmapFactory.decodeResource(res, R.drawable.flag_player02);
             }
-            canvas.drawBitmap(bitmap, p.coordX + bitmap.getWidth() / 2, p.coordY + bitmap.getHeight() / 2, new Paint());
+            canvas.drawBitmap(bitmap, p.coordY, p.coordX, null);
         }
     }
 
@@ -78,9 +79,9 @@ public class DotsCanvas extends LinearLayout {
         for (PointPair p :
                 pointPairs) {
             if (p.getPlayer().equals(StartActivity.playerOne)) {
-                paint.setColor(Color.RED);
+                paint.setColor(getResources().getColor(R.color.p_one_color));
             } else {
-                paint.setColor(Color.GREEN);
+                paint.setColor(getResources().getColor(R.color.p_two_color));
             }
             paint.setStrokeWidth(5);
             canvas.drawLine(p.getStartX(), p.getStartY(), p.getStopX(), p.getStopY(), paint);

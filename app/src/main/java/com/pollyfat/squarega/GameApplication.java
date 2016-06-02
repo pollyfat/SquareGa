@@ -1,9 +1,7 @@
 package com.pollyfat.squarega;
 
 import android.app.Application;
-import android.util.Log;
 
-import com.pollyfat.squarega.util.SoundUtil;
 
 import org.androidannotations.annotations.EApplication;
 

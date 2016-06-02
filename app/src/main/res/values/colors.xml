@@ -5,6 +5,14 @@
     <color name="colorAccent">#87cdbf</color>
     <color name="transparency">#00000000</color>
     <color name="game_bar">#f5f3cf</color>
+    <color name="avatar_bg_one">#41A137</color>
+    <color name="avatar_bg_two">#8A2E22</color>
+    <color name="smoke_gray">#bd807878</color>
+    <color name="hard_dot">#BAD6BD</color>
+    <color name="normal_dot">#F7BD8D</color>
+    <color name="easy_dot">#EBEBAD</color>
+    <color name="p_one_color">#108E5F</color>
+    <color name="p_two_color">#892F22</color>
     <color name="text_color">#4a629f</color>
     <color name="start_score">#ffbb44</color>
     <color name="player_one">#b2d6b4</color>

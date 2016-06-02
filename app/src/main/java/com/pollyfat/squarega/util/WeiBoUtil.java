@@ -14,9 +14,10 @@ import com.sina.weibo.sdk.api.share.IWeiboShareAPI;
 import com.sina.weibo.sdk.api.share.SendMessageToWeiboRequest;
 
 /**
- * Created by android on 2016/5/26.
+ * Created by polly on 2016/5/26.
+ *
  */
-public class WeiBoActivity extends Activity {
+public class WeiBoUtil extends Activity {
 
     /** 微博微博分享接口实例 */
     private IWeiboShareAPI mWeiboShareAPI = null;
@@ -54,7 +55,7 @@ public class WeiBoActivity extends Activity {
         request.message = weiboMessage;
 
         // 3. 发送请求消息到微博，唤起微博分享界面
-        mWeiboShareAPI.sendRequest(WeiBoActivity.this, request);
+        mWeiboShareAPI.sendRequest(WeiBoUtil.this, request);
     }
 
     /**

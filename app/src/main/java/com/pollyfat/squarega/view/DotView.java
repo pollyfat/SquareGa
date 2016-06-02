@@ -38,6 +38,15 @@ public class DotView extends ImageView {
         this.up = false;
     }
 
+    public List<Square> getSqares(){
+        List<Square> squares = new ArrayList<>();
+        squares.add(getOne());
+        squares.add(getTwo());
+        squares.add(getThree());
+        squares.add(getFour());
+        return squares;
+    }
+
     public boolean isRight() {
         return right;
     }

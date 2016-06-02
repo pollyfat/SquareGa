@@ -15,8 +15,8 @@ import com.pollyfat.squarega.util.Util;
 import java.util.List;
 
 /**
+ * 排行榜列表适配器
  * Created by polly on 2016/5/30.
- *
  */
 
 public class RankingListAdapter extends BaseAdapter {
@@ -80,12 +80,24 @@ public class RankingListAdapter extends BaseAdapter {
 
         viewHolder.textNameOne.setText(recordItem.getPlayerOne().getName());
         viewHolder.textNameTwo.setText(recordItem.getPlayerTwo().getName());
-        viewHolder.level.setText(recordItem.getLevel());
+        switch (recordItem.getLevel()) {
+            case 4:
+                viewHolder.level.setText(context.getString(R.string.easy));
+                break;
+            case 5:
+                viewHolder.level.setText(context.getString(R.string.normal));
+                break;
+            case 6:
+                viewHolder.level.setText(context.getString(R.string.hard));
+                break;
+        }
         viewHolder.date.setText(recordItem.getDate());
         viewHolder.time.setText(recordItem.getTime());
 
         if (recordItem.isFirstWin()) {
             viewHolder.ribbonTwo.setImageResource(R.drawable.ribbon_lose);
+        } else {
+            viewHolder.ribbonOne.setImageResource(R.drawable.ribbon_lose);
         }
         return convertView;
     }

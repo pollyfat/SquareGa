@@ -6,7 +6,6 @@ import android.graphics.Rect;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Gravity;
-import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -17,7 +16,6 @@ import com.pollyfat.squarega.R;
 import com.pollyfat.squarega.entity.Player;
 import com.pollyfat.squarega.entity.Square;
 import com.pollyfat.squarega.model.DotModel;
-import com.pollyfat.squarega.util.SoundUtil;
 import com.pollyfat.squarega.util.Util;
 import com.pollyfat.squarega.view.DotView;
 import com.pollyfat.squarega.view.DotsCanvas;
@@ -44,16 +42,14 @@ public class StartActivity extends Activity {
     @Extra
     public static Player playerTwo;
 
-    DotsCanvas root;
+    static DotsCanvas root;
     public static DotView[][] dotViews;
-    Square[][] squares;
-    DotModel dotModel;
+    public static Square[][] squares;
+    static DotModel dotModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        SoundUtil.init(this);
-        SoundUtil.startMusic();
         setContentView(R.layout.activity_game);
         root = (DotsCanvas) findViewById(R.id.dots);
         dotModel = new DotModel(root, StartActivity.this);
@@ -85,7 +81,7 @@ public class StartActivity extends Activity {
                 int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
                 if (resourceId > 0) {
                     int result = getResources().getDimensionPixelSize(resourceId);
-                    SURPLUS = surplus.getHeight() - d.getHeight()/2 + result;
+                    SURPLUS = surplus.getHeight() - d.getHeight() / 2 + result;
                 }
                 ViewTreeObserver obs = surplus.getViewTreeObserver();
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
@@ -115,7 +111,17 @@ public class StartActivity extends Activity {
                 final DotView dot = new DotView(StartActivity.this);
                 dot.setmX(j);
                 dot.setmY(i);
-                dot.setImageResource(R.drawable.dot_normal);
+                switch (level) {
+                    case ChooseLevelActivity.LEVEL_EASY:
+                        dot.setImageResource(R.drawable.dot_easy);
+                        break;
+                    case ChooseLevelActivity.LEVEL_NORMAL:
+                        dot.setImageResource(R.drawable.dot_normal);
+                        break;
+                    case ChooseLevelActivity.LEVEL_HARD:
+                        dot.setImageResource(R.drawable.dot_hard);
+                        break;
+                }
                 dot.setOnClickListener(dotModel);
 
                 dot.post(new Runnable() {
@@ -132,8 +138,8 @@ public class StartActivity extends Activity {
                                     Square square = new Square();
                                     square.setmX(j);
                                     square.setmY(i);
-                                    square.setCoordY(dotViews[i][j].getCoordX());
-                                    square.setCoordX(dotViews[i][j].getCoordY());
+                                    square.setCoordY(dotViews[i][j].getCoordY());
+                                    square.setCoordX(dotViews[i][j].getCoordX());
                                     squares[j][i] = square;
                                 }
                             }
@@ -195,19 +201,20 @@ public class StartActivity extends Activity {
         resetData();
     }
 
-    void resetData(){
+    public static void resetData() {
         root.clearLine();
+        dotModel.resetLineCount();
         playerOne.setWinCount(0);
         playerTwo.setWinCount(0);
-        for (DotView[] dotArray:
-                dotViews){
+        for (DotView[] dotArray :
+                dotViews) {
             for (DotView dot :
                     dotArray) {
                 dot.resetConn();
             }
         }
-        for (Square[] squareArray:
-                squares){
+        for (Square[] squareArray :
+                squares) {
             for (Square square :
                     squareArray) {
                 square.resetLine();

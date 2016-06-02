@@ -1,7 +1,8 @@
 package com.pollyfat.squarega.entity;
 
 /**
- * Created by android on 2016/5/30.
+ * Created by polly on 2016/5/30.
+ *
  */
 public class RecordItem {
     private Player playerOne;

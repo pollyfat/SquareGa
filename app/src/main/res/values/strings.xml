@@ -47,5 +47,8 @@
     <string name="about_game">本游戏由黄鹛、李亚共同开发</string>
     <string name="about_developer">游戏进行逻辑由黄鹛开发，游戏附加功能由李亚开发</string>
     <string name="about_designer">游戏界面由李亚设计</string>
-    <string name="about_supporter">本游戏由李亚特约精神赞助</string>
+    <string name="about_supporter">感谢对本游戏的大力支持</string>
+    <string name="easy">简单</string>
+    <string name="normal">一般</string>
+    <string name="hard">困难</string>
 </resources>

@@ -1,7 +1,6 @@
 package com.pollyfat.squarega.activity;
 
 import android.app.Activity;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -10,7 +9,6 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.pollyfat.squarega.R;
-import com.pollyfat.squarega.util.SoundUtil;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
@@ -37,30 +35,30 @@ public class SettingActivity extends Activity {
 
     }
 
-    @AfterViews
-    public void setMusicBtn(){
-        if (SoundUtil.isMusicSt()) {
-            music.setBackgroundResource(R.drawable.turn_on_bgmusic);
-        }else {
-            music.setBackgroundResource(R.drawable.turn_off_bgmusic);
-        }
-    }
+//    @AfterViews
+//    public void setMusicBtn(){
+//        if (SoundUtil.isMusicSt()) {
+//            music.setBackgroundResource(R.drawable.turn_on_bgmusic);
+//        }else {
+//            music.setBackgroundResource(R.drawable.turn_off_bgmusic);
+//        }
+//    }
     @Click(R.id.back)
     public void finishThisActivity() {
         this.finish();
     }
 
 
-    @Click(R.id.setting_music)
-    public void toggleMusic() {
-        if (SoundUtil.isMusicSt()) {
-            music.setBackgroundResource(R.drawable.turn_off_bgmusic);
-            SoundUtil.musicToggle();
-        } else {
-            music.setBackgroundResource(R.drawable.turn_on_bgmusic);
-            SoundUtil.musicToggle();
-        }
-    }
+//    @Click(R.id.setting_music)
+//    public void toggleMusic() {
+//        if (SoundUtil.isMusicSt()) {
+//            music.setBackgroundResource(R.drawable.turn_off_bgmusic);
+//            SoundUtil.musicToggle();
+//        } else {
+//            music.setBackgroundResource(R.drawable.turn_on_bgmusic);
+//            SoundUtil.musicToggle();
+//        }
+//    }
 
     boolean isShowing = false;
 

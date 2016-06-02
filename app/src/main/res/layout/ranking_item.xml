@@ -1,63 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="120dp"
     android:layout_margin="@dimen/activity_horizontal_margin"
     android:background="@drawable/dot_bg"
     android:orientation="horizontal"
-    android:padding="@dimen/activity_horizontal_margin">
-
-    <!--<RelativeLayout-->
-    <!--android:layout_width="0dp"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_gravity="center_horizontal|center_vertical"-->
-    <!--android:layout_weight="3"-->
-    <!--android:gravity="center_horizontal">-->
-
-    <!--<ImageView-->
-    <!--android:id="@+id/avatar_player_1"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_alignEnd="@+id/player_1_ribbon"-->
-    <!--android:src="@drawable/avatar0" />-->
-
-    <!--<ImageView-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_alignBottom="@+id/player_1_ribbon"-->
-    <!--android:src="@drawable/ribbon" />-->
-
-    <!--<ImageView-->
-    <!--android:id="@+id/player_1_ribbon"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_alignBottom="@id/avatar_player_1"-->
-    <!--android:layout_marginBottom="15dp"-->
-    <!--android:src="@drawable/ribbon_lose" />-->
-
-    <!--<TextView-->
-    <!--android:id="@+id/player_1_name"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_alignLeft="@id/player_1_ribbon"-->
-    <!--android:layout_alignRight="@id/player_1_ribbon"-->
-    <!--android:layout_alignTop="@id/player_1_ribbon"-->
-    <!--android:gravity="center_horizontal"-->
-    <!--android:text="@string/app_name" />-->
-    <!--</RelativeLayout>-->
+>
     <include
         android:id="@+id/player_one"
         layout="@layout/player_item"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal|center_vertical"
+        android:layout_gravity="center_vertical"
         android:layout_weight="3"
         android:gravity="center_horizontal" />
 
     <ImageView
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal|center_vertical"
+        android:layout_gravity="center_vertical"
+        android:layout_height="80dp"
         android:layout_weight="2"
         android:src="@drawable/vs" />
 
@@ -65,48 +27,9 @@
         android:id="@+id/player_two"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal|center_vertical"
+             android:layout_gravity="center_vertical"
         android:layout_weight="3"
         android:gravity="center_horizontal"/>
-    <!--<RelativeLayout-->
-        <!--android:layout_width="0dp"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_gravity="center_horizontal|center_vertical"-->
-        <!--android:layout_weight="3"-->
-        <!--android:gravity="center_horizontal">-->
-
-        <!--<ImageView-->
-            <!--android:id="@+id/avatar_player_2"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_alignEnd="@+id/player_2_ribbon_lose"-->
-            <!--android:src="@drawable/avatar0" />-->
-
-        <!--<ImageView-->
-            <!--android:id="@+id/player_2_ribbon"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_alignBottom="@id/avatar_player_2"-->
-            <!--android:layout_marginBottom="15dp"-->
-            <!--android:src="@drawable/ribbon" />-->
-
-        <!--<ImageView-->
-            <!--android:id="@+id/player_2_ribbon_lose"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_alignBottom="@id/player_2_ribbon"-->
-            <!--android:src="@drawable/ribbon_lose" />-->
-
-        <!--<TextView-->
-            <!--android:id="@+id/player_2_name"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_alignLeft="@id/player_2_ribbon"-->
-            <!--android:layout_alignRight="@id/player_2_ribbon"-->
-            <!--android:layout_alignTop="@id/player_2_ribbon"-->
-            <!--android:gravity="center_horizontal"-->
-            <!--android:text="@string/app_name" />-->
-    <!--</RelativeLayout>-->
 
     <LinearLayout
         android:layout_width="0dp"

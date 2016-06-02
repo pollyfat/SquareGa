@@ -11,21 +11,34 @@ public class Square {
     private boolean top, left, bottom, right;
     private float coordX;
     private float coordY;
-    private boolean coordSet;
+    private boolean complete;
+    private int borderCount=0;//已连接的边数
 
     public void resetLine(){
         this.top = false;
         this.left = false;
         this.bottom = false;
         this.right = false;
+        this.complete = false;
     }
 
-    public boolean isCoordSet() {
-        return coordSet;
+    @Override
+    public Square clone() throws CloneNotSupportedException {
+        Square square = new Square();
+        square.setComplete(this.isComplete());
+        return square;
     }
 
-    public void setCoordSet(boolean coordSet) {
-        this.coordSet = coordSet;
+    public int getBorderCount() {
+        return borderCount;
+    }
+
+    public boolean isComplete() {
+        return complete;
+    }
+
+    public void setComplete(boolean complete) {
+        this.complete = complete;
     }
 
     public float getCoordY() {
@@ -64,6 +77,7 @@ public class Square {
 
     public void setTop(boolean top) {
         this.top = top;
+        borderCount++;
     }
 
     public boolean isLeft() {
@@ -72,6 +86,7 @@ public class Square {
 
     public void setLeft(boolean left) {
         this.left = left;
+        borderCount++;
     }
 
     public boolean isBottom() {
@@ -80,6 +95,7 @@ public class Square {
 
     public void setBottom(boolean bottom) {
         this.bottom = bottom;
+        borderCount++;
     }
 
     public boolean isRight() {
@@ -88,10 +104,7 @@ public class Square {
 
     public void setRight(boolean right) {
         this.right = right;
-    }
-
-    public Player getOwner() {
-        return owner;
+        borderCount++;
     }
 
     public void setOwner(Player owner) {

@@ -135,6 +135,8 @@ public class ChoosePlayersActivity extends Activity {
         players = gson.fromJson(s, type);
         if (players == null) {
             players = new ArrayList<>();
+        }else if (players.get(0).getName()==playerCom.getName()){
+            players.remove(0);
         }
     }
 
@@ -173,7 +175,6 @@ public class ChoosePlayersActivity extends Activity {
 
                     //将创建的玩家加入列表中
                     editor = sharedPreferences.edit();
-                    players.remove(playerCom);
                     editor.putString(spFileName, new Gson().toJson(players));
                     editor.apply();
                 }

@@ -5,8 +5,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.AnimationDrawable;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -27,15 +25,12 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-import java.util.logging.SimpleFormatter;
 
 /**
- * Created by polly on 2016/5/11.
- * 游戏逻辑模型
+ * Created by polly on 2016/6/2.
+ * 对战计算机逻辑模型
  */
-
-public class DotModel implements View.OnClickListener {
-
+public class ComModel implements View.OnClickListener {
     static DotView dotStart;
     Context context;
     static Player playerNow = StartActivity.playerOne;
@@ -69,18 +64,64 @@ public class DotModel implements View.OnClickListener {
             }
             setSquareLine(d, dotStart);
             changeDotStateToFalse();
-            if (!findNewComp(dotStart, playerNow)) {
-                //如果未完成方块，则交换焦点玩家
-                if (playerNow == StartActivity.playerOne) {
-                    playerNow = StartActivity.playerTwo;
-                } else {
-                    playerNow = StartActivity.playerOne;
-                }
-            }
+            comTurn();
             isGameEnd();
         } else {
             changeDotStateToTrue(d);
         }
+    }
+
+    private void comTurn() {
+        Square[][] squares = new Square[StartActivity.level - 1][StartActivity.level - 1];
+        for (int i = 0; i < StartActivity.level; i++) {
+            for (int j = 0; j < StartActivity.level; j++) {
+                if (squares[i][j].getBorderCount() == 3) {
+                    if (!squares[i][j].isTop()) {
+                        setSquareLine(StartActivity.dotViews[i][j], StartActivity.dotViews[i + 1][j]);
+                    }
+                    if (!squares[i][j].isBottom()) {
+                        setSquareLine(StartActivity.dotViews[i][j + 1], StartActivity.dotViews[i + 1][j + 1]);
+                    }
+                    if (!squares[i][j].isLeft()) {
+                        setSquareLine(StartActivity.dotViews[i][j], StartActivity.dotViews[i][j + 1]);
+                    }
+                    if (!squares[i][j].isRight()) {
+                        setSquareLine(StartActivity.dotViews[i + 1][j], StartActivity.dotViews[i + 1][j + 1]);
+                    }
+                    return;
+                }
+            }
+        }
+        boolean isConn = true;
+        while (isConn) {
+            int i = (int) (Math.random() * level);
+            int j = (int) (Math.random() * level);
+            int arrow = (int) (Math.random() * level);
+            DotView dot = StartActivity.dotViews[i][j];
+            initConnDots(dot);
+            if (connDots.get(arrow - 1) != null) {
+                switch (arrow) {
+                    case 1:
+                        //和上面的点连接
+                        setSquareLine(StartActivity.dotViews[dot.getmX()][dot.getmY() - 1], dot);
+                        break;
+                    case 2:
+                        //和下面的点连接
+                        setSquareLine(StartActivity.dotViews[dot.getmX()][dot.getmY() + 1], dot);
+                        break;
+                    case 3:
+                        //和左边的点连接
+                        setSquareLine(StartActivity.dotViews[dot.getmX() - 1][dot.getmY()], dot);
+                        break;
+                    case 4:
+                        //和右边的点连接
+                        setSquareLine(StartActivity.dotViews[dot.getmX() + 1][dot.getmY()], dot);
+                        break;
+                }
+            }
+
+        }
+
     }
 
     /**
@@ -229,7 +270,7 @@ public class DotModel implements View.OnClickListener {
      *
      * @param dotsCanvas dotView的父容器，执行画线操作
      */
-    public DotModel(DotsCanvas dotsCanvas, Context context) {
+    public ComModel(DotsCanvas dotsCanvas, Context context) {
         this.dotsCanvas = dotsCanvas;
         this.context = context;
         this.level = StartActivity.level - 1;
@@ -294,7 +335,7 @@ public class DotModel implements View.OnClickListener {
         return flag;
     }
 
-    public void resetLineCount(){
+    public void resetLineCount() {
         lineCount = 0;
     }
 }

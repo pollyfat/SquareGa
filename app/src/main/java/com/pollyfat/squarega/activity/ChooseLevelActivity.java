@@ -27,6 +27,10 @@ public class ChooseLevelActivity extends Activity {
     }
 
     int level = -1;
+    public static final int LEVEL_EASY = 3;
+    public static final int LEVEL_NORMAL= 5;
+    public static final int LEVEL_HARD = 6;
+
 
     @Extra
     Player playerOne;
@@ -40,15 +44,15 @@ public class ChooseLevelActivity extends Activity {
         findViewById(R.id.medal_hard).setVisibility(View.INVISIBLE);
         switch (clickedView.getId()) {
             case R.id.level_easy:
-                level = 3;
+                level = LEVEL_EASY;
                 findViewById(R.id.medal_easy).setVisibility(View.VISIBLE);
                 break;
             case R.id.level_normal:
-                level = 4;
+                level = LEVEL_NORMAL;
                 findViewById(R.id.medal_normal).setVisibility(View.VISIBLE);
                 break;
             case R.id.level_hard:
-                level = 5;
+                level = LEVEL_HARD;
                 findViewById(R.id.medal_hard).setVisibility(View.VISIBLE);
                 break;
         }

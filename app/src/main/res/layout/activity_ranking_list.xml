@@ -16,35 +16,10 @@
         android:paddingTop="-64dp"
         android:src="@drawable/record"/>
 
-    <RelativeLayout
-        android:id="@+id/btn_root"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <Button
-            android:id="@+id/btn_player_one"
-            android:layout_width="@dimen/select_player_btn_width"
-            android:layout_height="@dimen/select_player_btn_height"
-            android:background="@drawable/player_one"
-            android:paddingLeft="@dimen/choose_player_btn_padding"
-            android:paddingRight="@dimen/choose_player_btn_padding"
-            android:text="@string/ranking_com"/>
-
-        <Button
-            android:id="@+id/btn_player_two"
-            android:layout_width="@dimen/select_player_btn_width"
-            android:layout_height="@dimen/select_player_btn_height"
-            android:layout_toEndOf="@id/btn_player_one"
-            android:background="@drawable/player_two_shadow"
-            android:paddingLeft="@dimen/choose_player_btn_padding"
-            android:paddingRight="@dimen/choose_player_btn_padding"
-            android:text="@string/ranking_man"/>
-    </RelativeLayout>
-
     <ListView
         android:id="@+id/ranking_list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:background="@color/player_one"
         android:divider="@null"
         android:padding="@dimen/activity_horizontal_margin"/>
