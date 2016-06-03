@@ -135,7 +135,7 @@ public class ChoosePlayersActivity extends Activity {
         players = gson.fromJson(s, type);
         if (players == null) {
             players = new ArrayList<>();
-        }else if (players.get(0).getName()==playerCom.getName()){
+        } else if (players.get(0).getName().equals(playerCom.getName())) {
             players.remove(0);
         }
     }

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android" android:oneshot="false"
+     >
+    <!-- 定义一个动画帧，Drawable为img0，持续时间50毫秒 -->
+    <item android:drawable="@drawable/greenpoint_1" android:duration="100" />
+    <item android:drawable="@drawable/greenpoint_2" android:duration="100" />
+    <item android:drawable="@drawable/greenpoint_3" android:duration="100" />
+    <item android:drawable="@drawable/greenpoint_4" android:duration="100" />
+    <item android:drawable="@drawable/greenpoint_5" android:duration="100" />
+    <item android:drawable="@drawable/greenpoint_6" android:duration="100" />
+    <item android:drawable="@drawable/greenpoint_7" android:duration="100" />
+    <item android:drawable="@drawable/greenpoint_8" android:duration="100" />
+    <item android:drawable="@drawable/greenpoint_9" android:duration="100" />
+    <item android:drawable="@drawable/greenpoint_10" android:duration="100" />
+    <item android:drawable="@drawable/greenpoint_11" android:duration="100" />
+    <item android:drawable="@drawable/greenpoint_12" android:duration="100" />
+</animation-list>

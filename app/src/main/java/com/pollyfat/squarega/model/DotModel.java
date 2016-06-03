@@ -5,8 +5,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.AnimationDrawable;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -27,7 +25,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-import java.util.logging.SimpleFormatter;
 
 /**
  * Created by polly on 2016/5/11.
@@ -98,7 +95,11 @@ public class DotModel implements View.OnClickListener {
 
         for (final DotView dot :
                 connDots) {
-            dot.setImageResource(R.drawable.dot_one_anim);
+            if (playerNow == StartActivity.playerOne) {
+                dot.setImageResource(R.drawable.dot_one_anim);
+            }else {
+                dot.setImageResource(R.drawable.dot_two_anim);
+            }
             AnimationDrawable anim = (AnimationDrawable) dot.getDrawable();
             anim.start();
             dot.setmClickable(true);
@@ -268,6 +269,13 @@ public class DotModel implements View.OnClickListener {
             editor.apply();
 
             Intent intent = new Intent(context, GameWinDialog_.class);
+            if ((StartActivity.playerOne.getWinSquare() > StartActivity.playerTwo.getWinSquare())) {
+                intent.putExtra("winName", StartActivity.playerOne.getName()+"赢啦！");
+            }else if ((StartActivity.playerOne.getWinSquare() == StartActivity.playerTwo.getWinSquare())){
+                intent.putExtra("winName", "达成平局啦~");
+            }else {
+                intent.putExtra("winName", StartActivity.playerTwo.getName()+"赢啦！");
+            }
             context.startActivity(intent);
         }
     }
@@ -285,8 +293,8 @@ public class DotModel implements View.OnClickListener {
                 if (!(before.get(i).isComplete() == squares.get(i).isComplete())) {
                     dotsCanvas.addPoint(squares.get(i).getCoordX(), squares.get(i).getCoordY(), player);
                     dotsCanvas.invalidate();
-                    squares.get(i).setOwner(player);
                     player.setWinSquare(player.getWinSquare() + 1);
+                    StartActivity.setScore();
                     flag = true;
                 }
             }

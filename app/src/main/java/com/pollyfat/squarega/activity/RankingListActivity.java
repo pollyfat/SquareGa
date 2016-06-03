@@ -29,7 +29,6 @@ public class RankingListActivity extends Activity {
     ListView rankingList;
 
     SharedPreferences sharedPreferences;
-    SharedPreferences.Editor editor;
     RankingListAdapter adapter;
     public static final String RANKING_LIST = "rankingList";
     List<RecordItem> records;

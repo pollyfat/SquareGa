@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="120dp"
     android:layout_margin="@dimen/activity_horizontal_margin"
+    android:layout_marginBottom="8dp"
     android:background="@drawable/dot_bg"
     android:orientation="horizontal"
->
+    >
+
     <include
         android:id="@+id/player_one"
         layout="@layout/player_item"
@@ -14,70 +17,52 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:layout_weight="3"
-        android:gravity="center_horizontal" />
+        android:gravity="center_horizontal"/>
 
     <ImageView
         android:layout_width="0dp"
+        android:layout_height="50dp"
         android:layout_gravity="center_vertical"
-        android:layout_height="80dp"
         android:layout_weight="2"
-        android:src="@drawable/vs" />
+        android:src="@drawable/vs"/>
 
-    <include layout="@layout/player_item"
+    <include
         android:id="@+id/player_two"
+        layout="@layout/player_item"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-             android:layout_gravity="center_vertical"
+        android:layout_gravity="center_vertical"
         android:layout_weight="3"
         android:gravity="center_horizontal"/>
 
     <LinearLayout
         android:layout_width="0dp"
+        android:gravity="center_horizontal"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:layout_weight="3"
-        android:orientation="vertical"
-        android:paddingLeft="@dimen/activity_horizontal_margin">
-
-        <TextView
-            android:id="@+id/player_one_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/app_name"
-            android:textColor="@color/text_color" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/vs"
-            android:textColor="@color/text_color" />
-
-        <TextView
-            android:id="@+id/player_two_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/app_name"
-            android:textColor="@color/text_color" />
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/level"
+            android:textSize="16sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/app_name"
-            android:textColor="@color/text_color" />
+            android:textColor="@color/text_color"/>
 
         <TextView
             android:id="@+id/date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/app_name"
-            android:textColor="@color/text_color" />
+            android:textColor="@color/text_color"/>
 
         <TextView
             android:id="@+id/time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/app_name"
-            android:textColor="@color/text_color" />
+            android:textColor="@color/text_color"/>
     </LinearLayout>
 </LinearLayout>

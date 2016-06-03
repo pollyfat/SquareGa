@@ -1,23 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_margin="@dimen/activity_horizontal_margin"
-    android:orientation="vertical">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/colorPrimary"
+                android:orientation="vertical"
+                android:padding="@dimen/activity_horizontal_margin">
 
     <ImageButton
-        android:background="@drawable/back"
-        android:layout_marginBottom="@dimen/activity_horizontal_margin"
         android:id="@+id/level_back"
         android:layout_width="@dimen/back_btn_size"
-        android:layout_height="@dimen/back_btn_size" />
+        android:layout_height="@dimen/back_btn_size"
+        android:layout_marginBottom="@dimen/activity_horizontal_margin"
+        android:background="@drawable/back"/>
+
     <RelativeLayout
-        android:background="@drawable/dot_line_choose_level"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/level_start"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/level_back">
+        android:layout_below="@+id/level_back"
+        android:background="@drawable/dot_line_choose_level">
 
         <ImageButton
             android:id="@+id/level_easy"
@@ -26,75 +28,77 @@
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="74dp"
-            android:background="@drawable/easy_level" />
+            android:background="@drawable/difficult_1"/>
+
         <ImageView
-            android:visibility="invisible"
-            android:src="@drawable/medal"
+            android:id="@+id/medal_easy"
             android:layout_width="@dimen/medal_width"
             android:layout_height="@dimen/medal_height"
-            android:layout_marginTop="26dp"
-            android:layout_alignTop="@+id/level_easy"
             android:layout_alignEnd="@+id/level_easy"
-            android:id="@+id/medal_easy" />
+            android:layout_alignTop="@+id/level_easy"
+            android:layout_marginTop="26dp"
+            android:src="@drawable/medal"
+            android:visibility="invisible"/>
 
         <ImageButton
             android:id="@+id/level_normal"
             android:layout_width="@dimen/level_btn_size"
             android:layout_height="@dimen/level_btn_size"
-            android:layout_weight="1"
-            android:background="@drawable/normal_level"
-            android:layout_marginStart="30dp"
+            android:layout_alignParentStart="true"
             android:layout_alignTop="@+id/level_hard"
-            android:layout_alignParentStart="true" />
+            android:layout_marginStart="30dp"
+            android:layout_weight="1"
+            android:background="@drawable/difficult_2"/>
 
         <ImageButton
             android:id="@+id/level_hard"
             android:layout_width="@dimen/level_btn_size"
             android:layout_height="@dimen/level_btn_size"
-            android:layout_weight="1"
-            android:background="@drawable/hard_level"
-            android:layout_marginEnd="36dp"
-            android:layout_below="@+id/level_easy"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="44dp" />
+            android:layout_below="@+id/level_easy"
+            android:layout_marginEnd="36dp"
+            android:layout_marginTop="44dp"
+            android:layout_weight="1"
+            android:background="@drawable/difficult_3"/>
 
         <ImageView
-            android:src="@drawable/medal"
-            android:layout_width="@dimen/medal_width"
-            android:visibility="invisible"
-            android:layout_height="@dimen/medal_height"
             android:id="@+id/medal_normal"
-            android:layout_alignTop="@+id/medal_hard"
-            android:layout_alignEnd="@+id/level_normal" />
-
-        <ImageView
-            android:src="@drawable/medal"
-            android:visibility="invisible"
             android:layout_width="@dimen/medal_width"
             android:layout_height="@dimen/medal_height"
+            android:layout_alignEnd="@+id/level_normal"
+            android:layout_alignTop="@+id/medal_hard"
+            android:src="@drawable/medal"
+            android:visibility="invisible"/>
+
+        <ImageView
             android:id="@+id/medal_hard"
-            android:layout_alignTop="@+id/level_hard"
+            android:layout_width="@dimen/medal_width"
+            android:layout_height="@dimen/medal_height"
             android:layout_alignEnd="@+id/level_hard"
-            android:layout_marginTop="30dp" />
+            android:layout_alignTop="@+id/level_hard"
+            android:layout_marginTop="30dp"
+            android:src="@drawable/medal"
+            android:visibility="invisible"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="@string/choose_level"
-            android:layout_marginTop="8dp"
             android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"/>
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="8dp"
+            android:text="@string/choose_level"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/start_score"/>
 
     </RelativeLayout>
 
 
     <ImageButton
-        android:layout_marginTop="@dimen/activity_horizontal_margin"
         android:id="@+id/level_start"
         android:layout_width="@dimen/start_btn_width"
         android:layout_height="@dimen/start_btn_height"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:background="@drawable/start_btn" />
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        android:background="@drawable/start_btn"/>
 </RelativeLayout>

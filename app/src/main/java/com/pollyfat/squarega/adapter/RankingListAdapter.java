@@ -61,8 +61,6 @@ public class RankingListAdapter extends BaseAdapter {
             viewHolder.playerTwoName = (TextView) playerTwo.findViewById(R.id.player_name);
             viewHolder.ribbonTwo = (ImageView) playerTwo.findViewById(R.id.ribbon);
 
-            viewHolder.textNameOne = (TextView) convertView.findViewById(R.id.player_one_name);
-            viewHolder.textNameTwo = (TextView) convertView.findViewById(R.id.player_two_name);
             viewHolder.level = (TextView) convertView.findViewById(R.id.level);
             viewHolder.date = (TextView) convertView.findViewById(R.id.date);
             viewHolder.time = (TextView) convertView.findViewById(R.id.time);
@@ -72,14 +70,11 @@ public class RankingListAdapter extends BaseAdapter {
         }
 
         RecordItem recordItem = records.get(position);
-        viewHolder.avatarPlayerOne.setImageResource((Util.getDrawableResourceByName(recordItem.getPlayerOne().getAvatar(), context)));
         viewHolder.playerOneName.setText(recordItem.getPlayerOne().getName());
-
-        viewHolder.avatarPlayerTwo.setImageResource((Util.getDrawableResourceByName(recordItem.getPlayerTwo().getAvatar(), context)));
+        viewHolder.avatarPlayerOne.setImageResource(Util.getDrawableResourceByName(recordItem.getPlayerOne().getAvatar(),context));
         viewHolder.playerTwoName.setText(recordItem.getPlayerTwo().getName());
+        viewHolder.avatarPlayerTwo.setImageResource(Util.getDrawableResourceByName(recordItem.getPlayerTwo().getAvatar(),context));
 
-        viewHolder.textNameOne.setText(recordItem.getPlayerOne().getName());
-        viewHolder.textNameTwo.setText(recordItem.getPlayerTwo().getName());
         switch (recordItem.getLevel()) {
             case 4:
                 viewHolder.level.setText(context.getString(R.string.easy));
@@ -109,8 +104,6 @@ public class RankingListAdapter extends BaseAdapter {
         ImageView ribbonTwo;
         TextView playerOneName;
         TextView playerTwoName;
-        TextView textNameOne;
-        TextView textNameTwo;
         TextView level;
         TextView date;
         TextView time;

@@ -6,7 +6,6 @@ package com.pollyfat.squarega.entity;
  */
 public class Square {
 
-    private Player owner;
     private int mX,mY;
     private boolean top, left, bottom, right;
     private float coordX;
@@ -107,7 +106,4 @@ public class Square {
         borderCount++;
     }
 
-    public void setOwner(Player owner) {
-        this.owner = owner;
-    }
 }

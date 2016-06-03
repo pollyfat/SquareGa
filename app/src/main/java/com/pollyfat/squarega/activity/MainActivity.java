@@ -3,6 +3,7 @@ package com.pollyfat.squarega.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.view.Window;
+import android.widget.Toast;
 
 import com.pollyfat.squarega.R;
 
@@ -30,6 +31,26 @@ public class MainActivity extends Activity {
     void settingWasClicked(){
         Intent intent = new Intent(MainActivity.this, SettingActivity_.class);
         startActivity(intent);
+    }
+
+    @Override
+    public void onBackPressed() {
+        ExitApp();
+    }
+
+    private long exitTime = 0;
+
+    public void ExitApp()
+    {
+        if ((System.currentTimeMillis() - exitTime) > 2000)
+        {
+            Toast.makeText(this, "再按一次退出程序", Toast.LENGTH_SHORT).show();
+            exitTime = System.currentTimeMillis();
+        } else
+        {
+            this.finish();
+        }
+
     }
 
 }

@@ -28,24 +28,27 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/game_player_one"
+                android:id="@+id/game_player_two"
                 android:layout_width="wrap_content"
+                android:layout_gravity="center_horizontal"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:text="@string/choose_player_one"/>
+                android:text="@string/choose_player_two"/>
 
             <TextView
-                android:id="@+id/time"
+                android:id="@+id/score_two"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:text="60"/>
+                android:textSize="16sp"
+                android:textColor="@color/avatar_bg_two"
+                android:text="得分：0"/>
         </LinearLayout>
 
 
         <ImageView
             android:background="@drawable/avatar_bg_two"
-            android:id="@+id/player_one_avatar"
+            android:id="@+id/player_two_avatar"
             android:layout_width="@dimen/player_avatar_size"
             android:layout_height="@dimen/player_avatar_size"
             android:layout_alignParentEnd="true"
@@ -73,7 +76,7 @@
 
         <ImageView
             android:background="@drawable/avatar_bg_one"
-            android:id="@+id/player_two_avatar"
+            android:id="@+id/player_one_avatar"
             android:layout_width="@dimen/player_avatar_size"
             android:layout_height="@dimen/player_avatar_size"
             android:layout_centerVertical="true"
@@ -87,18 +90,20 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/game_player_two"
+                android:textSize="16sp"
+                android:textColor="@color/avatar_bg_one"
+                android:id="@+id/score_one"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:text="@string/choose_player_two"/>
-
-            <TextView
-                android:id="@+id/game_score"
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:text="3-0"/>
+                android:text="得分：0"/>
+
+            <TextView
+                android:id="@+id/game_player_one"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/choose_player_one"/>
         </LinearLayout>
 
         <ImageButton

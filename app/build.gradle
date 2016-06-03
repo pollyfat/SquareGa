@@ -49,6 +49,19 @@ dependencies {
     compile 'org.jetbrains:annotations-java5:15.0'
     compile 'com.android.support:design:23.4.0'
     compile 'com.google.code.gson:gson:2.4'
-    //    compile files('D:/asworkspace/SquareGa/libs/weiboSDKCore_3.1.2.jar')
-    compile files('E:/work/android/asworkspace/SquareGa/libs/weiboSDKCore_3.1.2.jar')
+    compile files('E:/work/android/asworkspace/SquareGa/libs/MobCommons-2016.0426.1819.jar')
+    compile files('E:/work/android/asworkspace/SquareGa/libs/MobTools-2016.0426.1819.jar')
+    compile files('E:/work/android/asworkspace/SquareGa/libs/ShareSDK-Core-2.7.2.jar')
+    compile files('E:/work/android/asworkspace/SquareGa/libs/ShareSDK-Facebook-2.7.2.jar')
+    compile files('E:/work/android/asworkspace/SquareGa/libs/ShareSDK-GooglePlus-2.7.2.jar')
+    compile files('E:/work/android/asworkspace/SquareGa/libs/ShareSDK-Instagram-2.7.2.jar')
+    compile files('E:/work/android/asworkspace/SquareGa/libs/ShareSDK-QQ-2.7.2.jar')
+    compile files('E:/work/android/asworkspace/SquareGa/libs/ShareSDK-QZone-2.7.2.jar')
+    compile files('E:/work/android/asworkspace/SquareGa/libs/ShareSDK-ShortMessage-2.7.2.jar')
+    compile files('E:/work/android/asworkspace/SquareGa/libs/ShareSDK-SinaWeibo-2.7.2.jar')
+    compile files('E:/work/android/asworkspace/SquareGa/libs/ShareSDK-Twitter-2.7.2.jar')
+    compile files('E:/work/android/asworkspace/SquareGa/libs/ShareSDK-Wechat-2.7.2.jar')
+    compile files('E:/work/android/asworkspace/SquareGa/libs/ShareSDK-Wechat-Core-2.7.2.jar')
+    compile files('E:/work/android/asworkspace/SquareGa/libs/ShareSDK-Wechat-Favorite-2.7.2.jar')
+    compile files('E:/work/android/asworkspace/SquareGa/libs/ShareSDK-Wechat-Moments-2.7.2.jar')
 }

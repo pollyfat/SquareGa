@@ -2,6 +2,7 @@ package com.pollyfat.squarega.activity;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Build;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 import com.pollyfat.squarega.R;
 import com.pollyfat.squarega.entity.Player;
 import com.pollyfat.squarega.entity.Square;
+import com.pollyfat.squarega.model.ComModel;
 import com.pollyfat.squarega.model.DotModel;
 import com.pollyfat.squarega.util.Util;
 import com.pollyfat.squarega.view.DotView;
@@ -23,6 +25,7 @@ import com.pollyfat.squarega.view.DotsCanvas;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.Extra;
+import org.androidannotations.annotations.ViewById;
 
 /**
  * Created by polly on 2016/3/18.
@@ -46,6 +49,7 @@ public class StartActivity extends Activity {
     public static DotView[][] dotViews;
     public static Square[][] squares;
     static DotModel dotModel;
+    static ComModel comModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +57,7 @@ public class StartActivity extends Activity {
         setContentView(R.layout.activity_game);
         root = (DotsCanvas) findViewById(R.id.dots);
         dotModel = new DotModel(root, StartActivity.this);
+        comModel = new ComModel(root, StartActivity.this);
         dotViews = new DotView[level][level];
         squares = new Square[level - 1][level - 1];
         initView();
@@ -65,6 +70,18 @@ public class StartActivity extends Activity {
         ((ImageView) findViewById(R.id.player_two_avatar)).setImageResource(Util.getDrawableResourceByName(playerTwo.getAvatar(), this));
         ((TextView) findViewById(R.id.game_player_one)).setText(playerOne.getName());
         ((TextView) findViewById(R.id.game_player_two)).setText(playerTwo.getName());
+    }
+
+    @ViewById(R.id.score_one)
+    static
+    TextView scoreOne;
+    @ViewById(R.id.score_two)
+    static
+    TextView scoreTwo;
+
+    public static void setScore() {
+        scoreOne.setText("得分："+playerOne.getWinSquare());
+        scoreTwo.setText("得分："+playerTwo.getWinSquare());
     }
 
     /**
@@ -122,7 +139,10 @@ public class StartActivity extends Activity {
                         dot.setImageResource(R.drawable.dot_hard);
                         break;
                 }
-                dot.setOnClickListener(dotModel);
+                if (playerTwo.getName().equals("电脑君"))
+                    dot.setOnClickListener(comModel);
+                else
+                    dot.setOnClickListener(dotModel);
 
                 dot.post(new Runnable() {
                     @Override
@@ -138,8 +158,8 @@ public class StartActivity extends Activity {
                                     Square square = new Square();
                                     square.setmX(j);
                                     square.setmY(i);
-                                    square.setCoordY(dotViews[i][j].getCoordY());
-                                    square.setCoordX(dotViews[i][j].getCoordX());
+                                    square.setCoordY((dotViews[i + 1][j + 1].getCoordY() - dotViews[i][j].getCoordY()) / 2 + dotViews[i][j].getCoordY());
+                                    square.setCoordX((dotViews[i + 1][j + 1].getCoordX() - dotViews[i][j].getCoordX()) / 2 + dotViews[i][j].getCoordX());
                                     squares[j][i] = square;
                                 }
                             }
@@ -192,7 +212,9 @@ public class StartActivity extends Activity {
 
     @Click(R.id.back)
     void back() {
-        this.finish();
+        Intent intent = new Intent(this, MainActivity_.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        startActivity(intent);
         resetData();
     }
 
@@ -201,11 +223,21 @@ public class StartActivity extends Activity {
         resetData();
     }
 
+    @Override
+    public void onBackPressed() {
+        finish();
+        Intent intent = new Intent(StartActivity.this, MainActivity_.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        startActivity(intent);
+    }
+
     public static void resetData() {
         root.clearLine();
         dotModel.resetLineCount();
-        playerOne.setWinCount(0);
-        playerTwo.setWinCount(0);
+        comModel.resetLineCount();
+        playerOne.setWinSquare(0);
+        playerTwo.setWinSquare(0);
+        setScore();
         for (DotView[] dotArray :
                 dotViews) {
             for (DotView dot :

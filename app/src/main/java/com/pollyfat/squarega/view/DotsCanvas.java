@@ -1,6 +1,7 @@
 package com.pollyfat.squarega.view;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -8,6 +9,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.widget.LinearLayout;
@@ -69,7 +71,7 @@ public class DotsCanvas extends LinearLayout {
             } else {
                 bitmap = BitmapFactory.decodeResource(res, R.drawable.flag_player02);
             }
-            canvas.drawBitmap(bitmap, p.coordY, p.coordX, null);
+            canvas.drawBitmap(bitmap, p.coordY - 216, p.coordX-0, null);
         }
     }
 

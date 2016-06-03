@@ -33,8 +33,8 @@ import java.util.Locale;
 public class ComModel implements View.OnClickListener {
     static DotView dotStart;
     Context context;
-    static Player playerNow = StartActivity.playerOne;
     int level;
+    static Player playerNow = StartActivity.playerOne;
     int lineCount = 0;
     int lineNum;
     DotsCanvas dotsCanvas;
@@ -47,81 +47,79 @@ public class ComModel implements View.OnClickListener {
         if (d.ismClickable()) {
             //如果为可点击状态，说明此点周围的点已被点击过，等待连接。
             //将连接点的坐标加入canvas的数组中，遍历数组绘图
-            lineCount++;
-            dotsCanvas.addPointPair(playerNow, dotStart.getCoordX(), dotStart.getCoordY(), d.getCoordX(), d.getCoordY());
-            dotsCanvas.invalidate();
-            before.clear();
-            for (Square s : dotStart.getSqares()) {
-                try {
-                    if (s == null) {
-                        before.add(null);
-                    } else {
-                        before.add(s.clone());
-                    }
-                } catch (CloneNotSupportedException e) {
-                    e.printStackTrace();
-                }
-            }
-            setSquareLine(d, dotStart);
+            initBeforeList(dotStart);
+            setSquareLine(StartActivity.playerOne, d, dotStart);
             changeDotStateToFalse();
-            comTurn();
+            if (!findNewComp(dotStart, playerNow)) {
+                comTurn();
+            }
             isGameEnd();
         } else {
             changeDotStateToTrue(d);
         }
     }
 
+    private void initBeforeList(DotView dotStart) {
+        before.clear();
+        for (Square s : dotStart.getSqares()) {
+            try {
+                if (s == null) {
+                    before.add(null);
+                } else {
+                    before.add(s.clone());
+                }
+            } catch (CloneNotSupportedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     private void comTurn() {
-        Square[][] squares = new Square[StartActivity.level - 1][StartActivity.level - 1];
-        for (int i = 0; i < StartActivity.level; i++) {
-            for (int j = 0; j < StartActivity.level; j++) {
-                if (squares[i][j].getBorderCount() == 3) {
+        Square[][] squares = StartActivity.squares;
+        DotView dotStart = null;
+        for (int i = 0; i < StartActivity.level - 1; i++) {
+            for (int j = 0; j < StartActivity.level - 1; j++) {
+                if (squares[i][j] != null && squares[i][j].getBorderCount() == 3) {
                     if (!squares[i][j].isTop()) {
-                        setSquareLine(StartActivity.dotViews[i][j], StartActivity.dotViews[i + 1][j]);
+                        dotStart = StartActivity.dotViews[i][j];
+                        initBeforeList(dotStart);
+                        setSquareLine(StartActivity.playerTwo, StartActivity.dotViews[i][j], StartActivity.dotViews[i + 1][j]);
+                    } else if (!squares[i][j].isBottom()) {
+                        dotStart = StartActivity.dotViews[i][j + 1];
+                        initBeforeList(dotStart);
+                        setSquareLine(StartActivity.playerTwo, StartActivity.dotViews[i][j + 1], StartActivity.dotViews[i + 1][j + 1]);
+                    } else if (!squares[i][j].isLeft()) {
+                        dotStart = StartActivity.dotViews[i][j];
+                        initBeforeList(dotStart);
+                        setSquareLine(StartActivity.playerTwo, StartActivity.dotViews[i][j], StartActivity.dotViews[i][j + 1]);
+                    } else if (!squares[i][j].isRight()) {
+                        dotStart = StartActivity.dotViews[i + 1][j];
+                        initBeforeList(dotStart);
+                        setSquareLine(StartActivity.playerTwo, StartActivity.dotViews[i + 1][j], StartActivity.dotViews[i + 1][j + 1]);
                     }
-                    if (!squares[i][j].isBottom()) {
-                        setSquareLine(StartActivity.dotViews[i][j + 1], StartActivity.dotViews[i + 1][j + 1]);
-                    }
-                    if (!squares[i][j].isLeft()) {
-                        setSquareLine(StartActivity.dotViews[i][j], StartActivity.dotViews[i][j + 1]);
-                    }
-                    if (!squares[i][j].isRight()) {
-                        setSquareLine(StartActivity.dotViews[i + 1][j], StartActivity.dotViews[i + 1][j + 1]);
+                    if (findNewComp(dotStart, StartActivity.playerTwo)) {
+                        comTurn();
                     }
                     return;
                 }
             }
         }
-        boolean isConn = true;
-        while (isConn) {
+        boolean unConn = true;
+        while (unConn) {
             int i = (int) (Math.random() * level);
             int j = (int) (Math.random() * level);
-            int arrow = (int) (Math.random() * level);
             DotView dot = StartActivity.dotViews[i][j];
             initConnDots(dot);
-            if (connDots.get(arrow - 1) != null) {
-                switch (arrow) {
-                    case 1:
-                        //和上面的点连接
-                        setSquareLine(StartActivity.dotViews[dot.getmX()][dot.getmY() - 1], dot);
-                        break;
-                    case 2:
-                        //和下面的点连接
-                        setSquareLine(StartActivity.dotViews[dot.getmX()][dot.getmY() + 1], dot);
-                        break;
-                    case 3:
-                        //和左边的点连接
-                        setSquareLine(StartActivity.dotViews[dot.getmX() - 1][dot.getmY()], dot);
-                        break;
-                    case 4:
-                        //和右边的点连接
-                        setSquareLine(StartActivity.dotViews[dot.getmX() + 1][dot.getmY()], dot);
-                        break;
+            int arrow = (int) (Math.random() * (connDots.size() - 1));
+            if (connDots.size() != 0 && connDots.get(arrow) != null) {
+                initBeforeList(connDots.get(arrow));
+                setSquareLine(StartActivity.playerTwo, connDots.get(arrow), dot);
+                unConn = false;
+                if (findNewComp(connDots.get(arrow), StartActivity.playerTwo)) {
+                    comTurn();
                 }
             }
-
         }
-
     }
 
     /**
@@ -207,7 +205,7 @@ public class ComModel implements View.OnClickListener {
     /**
      * 记录连接后方块的状态
      */
-    private void setSquareLine(DotView d, DotView dotStart) {
+    private void setSquareLine(Player player, DotView d, DotView dotStart) {
         int x = d.getmX() - dotStart.getmX();
         int y = d.getmY() - dotStart.getmY();
         if (x == 0) {
@@ -245,6 +243,9 @@ public class ComModel implements View.OnClickListener {
             if (dotStart.getTwo() != null)
                 dotStart.getTwo().setTop(true);
         }
+        lineCount++;
+        dotsCanvas.addPointPair(player, dotStart.getCoordX(), dotStart.getCoordY(), d.getCoordX(), d.getCoordY());
+        dotsCanvas.invalidate();
         setSquareCom(dotStart);
     }
 
@@ -309,6 +310,14 @@ public class ComModel implements View.OnClickListener {
             editor.apply();
 
             Intent intent = new Intent(context, GameWinDialog_.class);
+            if ((StartActivity.playerOne.getWinSquare() > StartActivity.playerTwo.getWinSquare())) {
+                //人赢了
+                intent.putExtra("is_win", "true");
+            }else if ((StartActivity.playerOne.getWinSquare() == StartActivity.playerTwo.getWinSquare())){
+                intent.putExtra("is_win", "达成平局啦~");
+            }else {
+                intent.putExtra("is_win", "false");
+            }
             context.startActivity(intent);
         }
     }
@@ -326,12 +335,12 @@ public class ComModel implements View.OnClickListener {
                 if (!(before.get(i).isComplete() == squares.get(i).isComplete())) {
                     dotsCanvas.addPoint(squares.get(i).getCoordX(), squares.get(i).getCoordY(), player);
                     dotsCanvas.invalidate();
-                    squares.get(i).setOwner(player);
                     player.setWinSquare(player.getWinSquare() + 1);
                     flag = true;
                 }
             }
         }
+        StartActivity.setScore();
         return flag;
     }
 
