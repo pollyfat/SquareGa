@@ -71,7 +71,7 @@ public class DotsCanvas extends LinearLayout {
             } else {
                 bitmap = BitmapFactory.decodeResource(res, R.drawable.flag_player02);
             }
-            canvas.drawBitmap(bitmap, p.coordY - 216, p.coordX-0, null);
+            canvas.drawBitmap(bitmap, p.coordY -0, p.coordX-0, null);
         }
     }
 

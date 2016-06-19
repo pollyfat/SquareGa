@@ -27,7 +27,7 @@ public class ChooseLevelActivity extends Activity {
     }
 
     int level = -1;
-    public static final int LEVEL_EASY = 3;
+    public static final int LEVEL_EASY = 4;
     public static final int LEVEL_NORMAL= 5;
     public static final int LEVEL_HARD = 6;
 
